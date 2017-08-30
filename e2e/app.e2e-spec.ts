@@ -1,10 +1,10 @@
-import { BlablaPage } from './app.po';
+import { AngularStoreDojoPage } from './app.po';
 
-describe('blabla App', () => {
-  let page: BlablaPage;
+describe('angular-store-dojo App', () => {
+  let page: AngularStoreDojoPage;
 
   beforeEach(() => {
-    page = new BlablaPage();
+    page = new AngularStoreDojoPage();
   });
 
   it('should display welcome message', () => {

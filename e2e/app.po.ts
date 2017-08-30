@@ -1,6 +1,6 @@
 import { browser, by, element } from 'protractor';
 
-export class BlablaPage {
+export class AngularStoreDojoPage {
   navigateTo() {
     return browser.get('/');
   }
