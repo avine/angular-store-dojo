@@ -1,7 +1,12 @@
+<div class="wrapper">
 
-<ul>
-  <li><a routerLink="/list" routerLinkActive="active">Books</a></li>
-  <li><a routerLink="/cart" routerLinkActive="active">Cart</a></li>
-</ul>
+  <h1 class="title">Henri Potier - online</h1>
 
-<router-outlet></router-outlet>
+  <nav class="nav-list">
+    <div class="nav-item" routerLinkActive="nav-active"><a routerLink="/list">Books</a></div>
+    <div class="nav-item" routerLinkActive="nav-active"><a routerLink="/cart">Cart</a></div>
+  </nav>
+
+  <router-outlet></router-outlet>
+
+</div>

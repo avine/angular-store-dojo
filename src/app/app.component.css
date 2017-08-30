@@ -1,3 +1,25 @@
-.active {
-  background-color: #ddd;
+.wrapper {
+  max-width: 840px;
+  margin: 1.5rem;
+  padding: 0 calc(50% - 840px/2);
+}
+
+.title {
+  text-align: center;
+}
+
+.nav-list {
+  display: flex;
+  margin-bottom: 3rem;
+  border-bottom: 1px solid #ccc;
+}
+
+.nav-active {
+  background-color: #eee;
+}
+
+.nav-item a {
+  display: block;
+  padding: 0.75rem 1.5rem;
+  text-decoration: none;
 }

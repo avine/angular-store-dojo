@@ -6,6 +6,7 @@ import { NgModule } from '@angular/core';
 import { BooksService } from './services/books.service';
 
 import { AppComponent } from './app.component';
+import { BookItemComponent } from './components/book-item/book-item.component';
 import { BooksListComponent } from './components/books-list/books-list.component';
 import { BooksCartComponent } from './components/books-cart/books-cart.component';
 
@@ -18,6 +19,7 @@ const routes = [
 @NgModule({
   declarations: [
     AppComponent,
+    BookItemComponent,
     BooksListComponent,
     BooksCartComponent
   ],

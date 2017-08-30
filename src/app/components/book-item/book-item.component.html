@@ -1,0 +1,23 @@
+<div class="layout">
+  <div class="layout-main">
+
+    <h2 class="title">{{ book.title }}</h2>
+
+    <ng-container *ngFor="let synopsis of book.synopsis; let i = index">
+      <p *ngIf="i == 0 || moreSynopsis">{{ synopsis }}</p>
+    </ng-container>
+
+    <a *ngIf="book.synopsis.length > 1" class="more" (click)="moreSynopsis = !moreSynopsis">
+      <ng-container *ngIf="!moreSynopsis">plus d'infos</ng-container>
+      <ng-container *ngIf="moreSynopsis">moins d'infos</ng-container>
+    </a>
+  </div>
+
+  <div class="layout-addon">
+      <img [src]="book.cover" class="cover">
+
+      <h3 class="price">{{ book.price }} &euro;</h3>
+
+      <button class="add" (click)="add()">Ajouter</button>
+  </div>
+</div>
