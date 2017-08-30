@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 
 import { BooksService } from './services/books.service';
+import { CartService } from './services/cart.service';
 
 import { AppComponent } from './app.component';
 import { BookItemComponent } from './components/book-item/book-item.component';
@@ -29,7 +30,8 @@ const routes = [
     RouterModule.forRoot(routes)
   ],
   providers: [
-    BooksService
+    BooksService,
+    CartService
   ],
   bootstrap: [AppComponent]
 })

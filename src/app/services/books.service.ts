@@ -11,7 +11,7 @@ export class BooksService {
     return this.http.get('http://henri-potier.xebia.fr/books');
   }
 
-  getOffers() {
-    // TODO...
+  getOffers(isbn: string[]) {
+    return this.http.get(`http://henri-potier.xebia.fr/books/${isbn}/commercialOffers`);
   }
 }

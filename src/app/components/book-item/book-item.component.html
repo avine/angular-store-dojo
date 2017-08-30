@@ -18,6 +18,7 @@
 
       <h3 class="price">{{ book.price }} &euro;</h3>
 
-      <button class="add" (click)="add()">Ajouter</button>
-  </div>
+      <button *ngIf="!isAdded()" class="action action-add" (click)="add()">Ajouter</button>
+      <button *ngIf="isAdded()" class="action action-remove" (click)="remove()">Retirer</button>
+    </div>
 </div>

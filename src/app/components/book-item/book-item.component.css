@@ -31,10 +31,14 @@
   margin: 0.25rem 0;
 }
 
-.add {
+.action {
   padding: 0.5rem 1rem;
   border: none;
   background-color: dodgerblue;
   color: #fff;
   font-size: 1.25rem;
+}
+
+.action-remove {
+  background-color: cadetblue;
 }
