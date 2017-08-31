@@ -22,7 +22,7 @@ export class BooksCartComponent implements OnInit {
 
   getOffers() {
     if (this.items.length) {
-      this.booksService.getOffers(this.items).subscribe(offers => console.log('offers', offers.json()));
+      this.booksService.offers(this.items).subscribe(offers => console.log('offers', offers.json()));
     }
   }
 }

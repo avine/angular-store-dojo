@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  booksUrl: 'http://henri-potier.xebia.fr/books'
 };

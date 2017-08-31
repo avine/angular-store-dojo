@@ -1,6 +1,6 @@
 <article class="container">
   <div class="description">
-    <h2 class="title">{{ book.title }}</h2>
+    <h2 class="title">{{ index }}. {{ book.title }}</h2>
 
     <ng-container *ngFor="let synopsis of book.synopsis; let i = index">
       <p *ngIf="i == 0 || readMore">{{ synopsis }}</p>

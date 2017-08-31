@@ -1,28 +1,35 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
+import { CartModel } from '../models/cart.model';
+
 @Injectable()
 export class CartService {
-  private items: string[] = [];
-  private cart = new BehaviorSubject<string[]>([]);
+  private items: CartModel[] = [];
+  private cart = new BehaviorSubject<CartModel[]>([]);
 
   constructor() { }
 
-  add(isbn: string) {
-    this.items.push(isbn);
-    this.next();
-  }
-
-  remove(isbn: string) {
-    this.items = this.items.filter(item => item !== isbn);
-    this.next();
-  }
-
   private next() {
-    this.cart.next(this.items.slice());
+    this.cart.next(this.items);
   }
 
   subscribe(callback) {
-    return this.cart.subscribe(callback);
+    return this.cart.subscribe(items => callback(items.slice()));
+  }
+
+  set(isbn: string, units: number) {
+    const filtered = this.items.filter(item => item.isbn === isbn);
+    if (filtered.length) {
+      filtered[0].units = units;
+    } else {
+      this.items.push({ isbn, units });
+    }
+    this.next();
+  }
+
+  empty() {
+    this.items = [];
+    this.next();
   }
 }

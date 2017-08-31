@@ -4,12 +4,13 @@ import { BooksModel } from '../../models/books.model';
 import { CartService } from '../../services/cart.service';
 
 @Component({
-  selector: 'app-book-item',
-  templateUrl: './book-item.component.html',
-  styleUrls: ['./book-item.component.css']
+  selector: 'app-books-book',
+  templateUrl: './books-book.component.html',
+  styleUrls: ['./books-book.component.css']
 })
-export class BookItemComponent implements OnInit {
+export class BooksBookComponent implements OnInit {
   @Input() book: BooksModel;
+  @Input() index: number;
   readMore = false;
   isbn: string[] = [];
 
@@ -24,11 +25,11 @@ export class BookItemComponent implements OnInit {
   }
 
   add() {
-    this.cartService.add(this.book.isbn);
+    this.cartService.set(this.book.isbn, 1);
   }
 
   remove() {
-    this.cartService.remove(this.book.isbn);
+    this.cartService.set(this.book.isbn, 0);
   }
 
   isAdded() {

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 import { BooksModel } from '../../models/books.model';
 import { BooksService } from '../../services/books.service';
@@ -10,13 +9,13 @@ import { BooksService } from '../../services/books.service';
   styleUrls: ['./books-list.component.css']
 })
 export class BooksListComponent implements OnInit {
-  public books = new BehaviorSubject<BooksModel[]>([]);
+  public books: BooksModel[] = [];
 
   constructor(private booksService: BooksService) {
   }
 
   ngOnInit() {
-    this.booksService.getList().subscribe(list => this.books.next(list.json() as BooksModel[]));
+    this.booksService.list(books => this.books = books);
   }
 
 }
