@@ -1,24 +1,25 @@
-<div class="layout">
-  <div class="layout-main">
-
+<article class="container">
+  <div class="description">
     <h2 class="title">{{ book.title }}</h2>
 
     <ng-container *ngFor="let synopsis of book.synopsis; let i = index">
-      <p *ngIf="i == 0 || moreSynopsis">{{ synopsis }}</p>
+      <p *ngIf="i == 0 || readMore">{{ synopsis }}</p>
     </ng-container>
 
-    <a *ngIf="book.synopsis.length > 1" class="more" (click)="moreSynopsis = !moreSynopsis">
-      <ng-container *ngIf="!moreSynopsis">plus d'infos</ng-container>
-      <ng-container *ngIf="moreSynopsis">moins d'infos</ng-container>
+    <a *ngIf="book.synopsis.length > 1" class="more" (click)="readMore = !readMore">
+      <ng-container *ngIf="!readMore">plus d'infos</ng-container>
+      <ng-container *ngIf="readMore">moins d'infos</ng-container>
     </a>
   </div>
 
-  <div class="layout-addon">
-      <img [src]="book.cover" class="cover">
+  <div class="details">
+    <img [src]="book.cover" class="cover">
 
-      <h3 class="price">{{ book.price }} &euro;</h3>
+    <h3 class="price">{{ book.price }} &euro;</h3>
 
-      <button *ngIf="!isAdded()" class="action action-add" (click)="add()">Ajouter</button>
-      <button *ngIf="isAdded()" class="action action-remove" (click)="remove()">Retirer</button>
-    </div>
-</div>
+    <button class="action" [ngClass]="{ 'action-add': !isAdded(), 'action-remove': isAdded() }" (click)="onAction()">
+      <ng-container *ngIf="!isAdded()">Ajouter</ng-container>
+      <ng-container *ngIf="isAdded()">Retirer</ng-container>
+    </button>
+  </div>
+</article>

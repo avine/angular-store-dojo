@@ -1,16 +1,16 @@
-.layout {
+.container {
   display: flex;
   padding-bottom: 1.5rem;
   margin-bottom: 1.5rem;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid var(--border-color);
 }
 
-.layout-main {
+.description {
   flex-grow: 1;
-  padding-right: 1.5rem;
+  padding-right: var(--space-medium);
 }
 
-.layout-addon {
+.details {
   text-align: center;
 }
 
@@ -20,7 +20,6 @@
 
 .more {
   cursor: pointer;
-  text-align: right;
 }
 
 .cover {
@@ -34,9 +33,10 @@
 .action {
   padding: 0.5rem 1rem;
   border: none;
-  background-color: dodgerblue;
+  background-color: var(--color-brand);
   color: #fff;
   font-size: 1.25rem;
+  transition: all ease var(--transition-duration);
 }
 
 .action-remove {

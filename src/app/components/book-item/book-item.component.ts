@@ -10,13 +10,17 @@ import { CartService } from '../../services/cart.service';
 })
 export class BookItemComponent implements OnInit {
   @Input() book: BooksModel;
-  moreSynopsis = false;
+  readMore = false;
   isbn: string[] = [];
 
   constructor(private cartService: CartService) { }
 
   ngOnInit() {
     this.cartService.subscribe(isbn => this.isbn = isbn);
+  }
+
+  onAction() {
+    !this.isAdded() ? this.add() : this.remove();
   }
 
   add() {

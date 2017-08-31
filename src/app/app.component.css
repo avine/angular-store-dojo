@@ -1,7 +1,10 @@
-.wrapper {
-  max-width: 840px;
-  margin: 1.5rem;
-  padding: 0 calc(50% - 840px/2);
+.container {
+  --container-max-width: 990px; /* 990px - 2 * 15px = 960px */
+
+  margin: 0 15px;
+  padding: 0 calc(50% - var(--container-max-width)/2);
+  max-width: var(--container-max-width);
+  border-top: 1px solid transparent;
 }
 
 .title {
@@ -10,16 +13,18 @@
 
 .nav-list {
   display: flex;
-  margin-bottom: 3rem;
-  border-bottom: 1px solid #ccc;
+  margin-bottom: var(--space-large);
+  border-bottom: 1px solid var(--border-color);
 }
 
-.nav-active {
-  background-color: #eee;
-}
-
-.nav-item a {
+.nav-item {
   display: block;
   padding: 0.75rem 1.5rem;
   text-decoration: none;
+  transition: all ease var(--transition-duration);
+}
+
+.nav-active {
+  background-color: var(--color-brand);
+  color: #fff;
 }
