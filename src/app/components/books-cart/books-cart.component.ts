@@ -38,43 +38,14 @@ export class BooksCartComponent implements OnInit {
   }
 
   getOffers() {
+    this.offers = [];
     const isbn = this.items.map(item => item.isbn);
     if (isbn.length) {
       this.booksService.offers(isbn).subscribe(offers => {
-        this.offers = offers.json().offers as OfferModel[];
-        this.getDiscounts();
+        this.offers = this.cartService.getDiscountPrices(
+          offers.json().offers as OfferModel[]
+        );
       });
-    } else {
-      this.offers = [];
     }
-  }
-
-  getDiscounts() {
-    for (const offer of this.offers) {
-      switch (offer.type) {
-        case 'percentage':
-          offer.price = this.getPercentage(offer.value);
-          break;
-        case 'minus':
-          offer.price = this.getMinus(offer.value);
-          break;
-        case 'slice':
-          offer.price = this.getSlice(offer.value, offer.sliceValue);
-          break;
-      }
-    }
-    this.offers = this.offers.sort((a, b) => a.price - b.price);
-  }
-
-  getPercentage(value) {
-    return this.fullPrice * (100 - value) / 100;
-  }
-
-  getMinus(value) {
-    return this.fullPrice > value ? this.fullPrice - value : this.fullPrice;
-  }
-
-  getSlice(value, sliceValue) {
-    return this.fullPrice - Math.floor(this.fullPrice / sliceValue) * value;
   }
 }
