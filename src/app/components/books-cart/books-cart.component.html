@@ -9,9 +9,26 @@
 
 <button *ngIf="items.length >= 2" (click)="onEmpty()">Tout supprimer</button>
 
-{{ fullPrice }}
+<p *ngIf="fullPrice">Prix : {{ fullPrice }} &euro;</p>
 
-<p *ngFor="let discount of dicountPrices">
+<!--<p *ngFor="let discount of dicountPrices">
   {{ discount.type }}
   {{ discount.price }}
-</p>
+</p>-->
+
+<ng-container *ngIf="dicountPrices.length" [ngSwitch]="dicountPrices[0].type">
+  <p *ngSwitchCase="'percentage'">
+    Votre prix : {{ dicountPrices[0].price }} &euro;<br />
+    Vous avez une réduction de {{ dicountPrices[0].value }} % !
+  </p>
+  <p *ngSwitchCase="'minus'">
+      Votre prix : {{ dicountPrices[0].price }} &euro;<br />
+      Vous avez une réduction de {{ dicountPrices[0].value }} &euro; !
+  </p>
+  <p *ngSwitchCase="'slice'">
+      Votre prix : {{ dicountPrices[0].price }} &euro;<br />
+      Vous avez une réduction de {{ dicountPrices[0].value }} &euro; par tranche de {{ dicountPrices[0].sliceValue }} &euro; !
+  </p>
+</ng-container>
+
+<p *ngIf="!items.length">Votre panier est vide.</p>

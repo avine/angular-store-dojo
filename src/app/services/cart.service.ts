@@ -18,8 +18,8 @@ export class CartService {
     this.cart.next(this.items);
   }
 
-  set(book: BookModel, units: number) {
-    if (units === 0) {
+  set(book: BookModel, units: number) { // FIXME: in fact, units is a string !!!!
+    if (units.toString() === '0') {
       this.items = this.items.filter(item => item.isbn !== book.isbn);
     } else {
       const filtered = this.items.filter(item => item.isbn === book.isbn);

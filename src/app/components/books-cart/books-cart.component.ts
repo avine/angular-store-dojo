@@ -25,6 +25,7 @@ export class BooksCartComponent implements OnInit {
 
   ngOnInit() {
     this.cartService.cart.subscribe(items => {
+      console.log(items);
       this.items = items;
       this.fullPrice = this.cartService.getFullPrice();
       this.getOffers();
@@ -44,30 +45,53 @@ export class BooksCartComponent implements OnInit {
     if (isbn.length) {
       this.booksService.offers(isbn).subscribe(offers => {
         this.offers = offers.json().offers as OfferModel[];
-        this.calculate();
+        this.getDiscounts();
       });
     } else {
       this.dicountPrices = [];
     }
   }
 
-  calculate() {
+  getDiscounts() {
     this.dicountPrices = [];
-    console.log('offers', this.offers);
     for (const offer of this.offers) {
       switch (offer.type) {
         case 'percentage':
           this.dicountPrices.push({
             type: offer.type,
-            price: this.fullPrice * (100 - offer.value) / 100
+            value: offer.value,
+            price: this.getPercentage(offer.value)
           });
           break;
         case 'minus':
+          this.dicountPrices.push({
+            type: offer.type,
+            value: offer.value,
+            price: this.getMinus(offer.value)
+          });
           break;
         case 'slice':
+          this.dicountPrices.push({
+            type: offer.type,
+            value: offer.value,
+            sliceValue: offer.sliceValue,
+            price: this.getSlice(offer.value, offer.sliceValue)
+          });
           break;
       }
     }
-    console.log(this.dicountPrices);
+    this.dicountPrices = this.dicountPrices.sort((a, b) => a.price - b.price);
+  }
+
+  getPercentage(value) {
+    return this.fullPrice * (100 - value) / 100;
+  }
+
+  getMinus(value) {
+    return this.fullPrice > value ? this.fullPrice - value : this.fullPrice;
+  }
+
+  getSlice(value, sliceValue) {
+    return this.fullPrice - Math.floor(this.fullPrice / sliceValue) * value;
   }
 }

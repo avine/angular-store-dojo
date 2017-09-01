@@ -10,10 +10,12 @@ import { AppComponent } from './app.component';
 import { BooksBookComponent } from './components/books-book/books-book.component';
 import { BooksListComponent } from './components/books-list/books-list.component';
 import { BooksCartComponent } from './components/books-cart/books-cart.component';
+import { AllInOneComponent } from './components/all-in-one/all-in-one.component';
 
 const routes = [
   { path: 'list', component: BooksListComponent },
   { path: 'cart', component: BooksCartComponent },
+  { path: 'all', component: AllInOneComponent },
   { path: '**', redirectTo: '/list' }
 ];
 
@@ -22,7 +24,8 @@ const routes = [
     AppComponent,
     BooksBookComponent,
     BooksListComponent,
-    BooksCartComponent
+    BooksCartComponent,
+    AllInOneComponent
   ],
   imports: [
     BrowserModule,
