@@ -38,7 +38,6 @@ export class BooksCartComponent implements OnInit {
   }
 
   getOffers() {
-    this.offers = [];
     const isbn = this.items.map(item => item.isbn);
     if (isbn.length) {
       this.booksService.offers(isbn).subscribe(offers => {
@@ -46,6 +45,8 @@ export class BooksCartComponent implements OnInit {
           offers.json().offers as OfferModel[]
         );
       });
+    } else {
+      this.offers = [];
     }
   }
 }
