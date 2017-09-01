@@ -16,7 +16,6 @@ export class BooksCartComponent implements OnInit {
   items: CartModel[] = [];
   fullPrice: number;
   offers: OfferModel[];
-  dicountPrices = [];
 
   constructor(
     private cartService: CartService,
@@ -48,39 +47,25 @@ export class BooksCartComponent implements OnInit {
         this.getDiscounts();
       });
     } else {
-      this.dicountPrices = [];
+      this.offers = [];
     }
   }
 
   getDiscounts() {
-    this.dicountPrices = [];
     for (const offer of this.offers) {
       switch (offer.type) {
         case 'percentage':
-          this.dicountPrices.push({
-            type: offer.type,
-            value: offer.value,
-            price: this.getPercentage(offer.value)
-          });
+          offer.price = this.getPercentage(offer.value);
           break;
         case 'minus':
-          this.dicountPrices.push({
-            type: offer.type,
-            value: offer.value,
-            price: this.getMinus(offer.value)
-          });
+          offer.price = this.getMinus(offer.value);
           break;
         case 'slice':
-          this.dicountPrices.push({
-            type: offer.type,
-            value: offer.value,
-            sliceValue: offer.sliceValue,
-            price: this.getSlice(offer.value, offer.sliceValue)
-          });
+          offer.price = this.getSlice(offer.value, offer.sliceValue);
           break;
       }
     }
-    this.dicountPrices = this.dicountPrices.sort((a, b) => a.price - b.price);
+    this.offers = this.offers.sort((a, b) => a.price - b.price);
   }
 
   getPercentage(value) {

@@ -17,7 +17,7 @@
 
     <h3 class="price">{{ book.price }} &euro;</h3>
 
-    <input class="units-input" type="number" [value]="units || 0" #unitsInput (input)="onChange(unitsInput.value)">
+    <input class="units-input" type="number" min="0" [value]="units || 0" #unitsInput (input)="onChange(unitsInput.value)">
     <small class="units-type">unité(s)</small>
   </label>
 </article>
