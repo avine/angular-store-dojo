@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
 import { BookModel } from '../../models/book.model';
-import { CartModel } from '../../models/cart.model';
 import { OfferModel } from '../../models/offer.model';
 
 import { CartService } from '../../services/cart.service';
@@ -13,7 +12,7 @@ import { BooksService } from '../../services/books.service';
   styleUrls: ['./books-cart.component.css']
 })
 export class BooksCartComponent implements OnInit {
-  items: CartModel[] = [];
+  items: BookModel[] = [];
   fullPrice: number;
   offers: OfferModel[];
 
@@ -24,7 +23,6 @@ export class BooksCartComponent implements OnInit {
 
   ngOnInit() {
     this.cartService.cart.subscribe(items => {
-      console.log(items);
       this.items = items;
       this.fullPrice = this.cartService.getFullPrice();
       this.getOffers();

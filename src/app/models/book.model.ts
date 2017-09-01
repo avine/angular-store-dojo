@@ -4,4 +4,5 @@ export interface BookModel {
   title: string;
   cover: string;
   synopsis: string[];
+  units?: number;
 }

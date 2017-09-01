@@ -1,13 +1,12 @@
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 import { BookModel } from '../models/book.model';
-import { CartModel } from '../models/cart.model';
 
 export class CartService {
-  private items: CartModel[] = [];
-  cart = new BehaviorSubject<CartModel[]>([]);
+  private items: BookModel[] = [];
+  cart = new BehaviorSubject<BookModel[]>([]);
 
-  static duplicate(items: CartModel[]) {
+  static duplicate(items: BookModel[]) {
     return items.map(item => Object.assign({}, item));
   }
 
@@ -26,7 +25,7 @@ export class CartService {
       if (filtered.length) {
         filtered[0].units = units;
       } else {
-        this.items.push(Object.assign({ units }, book) as CartModel);
+        this.items.push(Object.assign({ units }, book) as BookModel);
       }
     }
     this.next();
