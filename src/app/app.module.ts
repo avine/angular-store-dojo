@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { BooksBookComponent } from './components/books-book/books-book.component';
 import { BooksListComponent } from './components/books-list/books-list.component';
 import { BooksCartComponent } from './components/books-cart/books-cart.component';
+import { BooksBasketComponent } from './components/books-basket/books-basket.component';
 import { AllInOneComponent } from './components/all-in-one/all-in-one.component';
 
 const routes = [
@@ -25,6 +26,7 @@ const routes = [
     BooksBookComponent,
     BooksListComponent,
     BooksCartComponent,
+    BooksBasketComponent,
     AllInOneComponent
   ],
   imports: [

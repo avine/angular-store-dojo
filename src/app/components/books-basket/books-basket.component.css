@@ -1,0 +1,10 @@
+.container {
+  text-align: center;
+}
+
+.container > * {
+  display: inline-block;
+  border-radius: 0 0 var(--border-radius) var(--border-radius);
+  background-color: #eee;
+  padding: 0.5rem 1rem;
+}
