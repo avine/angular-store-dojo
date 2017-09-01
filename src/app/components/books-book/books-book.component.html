@@ -1,6 +1,6 @@
 <article class="container">
   <div class="description">
-    <h2 class="title">{{ index }}. {{ book.title }}</h2>
+    <h2 class="title">{{ book.title }}</h2>
 
     <ng-container *ngFor="let synopsis of book.synopsis; let i = index">
       <p *ngIf="i == 0 || readMore">{{ synopsis }}</p>
@@ -12,14 +12,12 @@
     </a>
   </div>
 
-  <div class="details">
+  <label class="selection">
     <img [src]="book.cover" class="cover">
 
     <h3 class="price">{{ book.price }} &euro;</h3>
 
-    <button class="action" [ngClass]="{ 'action-add': !isAdded(), 'action-remove': isAdded() }" (click)="onAction()">
-      <ng-container *ngIf="!isAdded()">Ajouter</ng-container>
-      <ng-container *ngIf="isAdded()">Retirer</ng-container>
-    </button>
-  </div>
+    <input class="units-input" type="number" [value]="units || 0" #unitsInput (input)="onChange(unitsInput.value)">
+    <small class="units-type">unité(s)</small>
+  </label>
 </article>

@@ -1,29 +1,33 @@
-import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
+import { BookModel } from '../models/book.model';
 import { CartModel } from '../models/cart.model';
 
-@Injectable()
 export class CartService {
   private items: CartModel[] = [];
-  private cart = new BehaviorSubject<CartModel[]>([]);
+  cart = new BehaviorSubject<CartModel[]>([]);
 
-  constructor() { }
+  static duplicate(items: CartModel[]) {
+    return items.map(item => Object.assign({}, item));
+  }
+
+  constructor() {
+  }
 
   private next() {
     this.cart.next(this.items);
   }
 
-  subscribe(callback) {
-    return this.cart.subscribe(items => callback(items.slice()));
-  }
-
-  set(isbn: string, units: number) {
-    const filtered = this.items.filter(item => item.isbn === isbn);
-    if (filtered.length) {
-      filtered[0].units = units;
+  set(book: BookModel, units: number) {
+    if (units === 0) {
+      this.items = this.items.filter(item => item.isbn !== book.isbn);
     } else {
-      this.items.push({ isbn, units });
+      const filtered = this.items.filter(item => item.isbn === book.isbn);
+      if (filtered.length) {
+        filtered[0].units = units;
+      } else {
+        this.items.push(Object.assign({ units }, book) as CartModel);
+      }
     }
     this.next();
   }

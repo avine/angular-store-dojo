@@ -1,2 +1,17 @@
+<section *ngFor="let item of items">
+  <article>
+    {{ item.title }}
+    {{ item.price }} &euro;
+    {{ item.units }} unité(s)
+    <button (click)="onDelete(item)">Supprimer</button>
+  </article>
+</section>
 
-{{ items | json }}
+<button *ngIf="items.length >= 2" (click)="onEmpty()">Tout supprimer</button>
+
+{{ fullPrice }}
+
+<p *ngFor="let discount of dicountPrices">
+  {{ discount.type }}
+  {{ discount.price }}
+</p>

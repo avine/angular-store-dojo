@@ -3,13 +3,13 @@ import { Http } from '@angular/http';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { environment } from '../../environments/environment';
 
-import { BooksModel } from '../models/books.model';
+import { BookModel } from '../models/book.model';
 
 @Injectable()
 export class BooksService {
-  private books = new ReplaySubject<BooksModel[]>(1);
+  books = new ReplaySubject<BookModel[]>(1);
 
-  static duplicate(books) {
+  static duplicate(books: BookModel[]) {
     return books.map(book => Object.assign({}, book));
   }
 
@@ -17,10 +17,6 @@ export class BooksService {
     this.http.get(environment.booksUrl).subscribe(
       books => this.books.next(books.json())
     );
-  }
-
-  list(callback) {
-    return this.books.subscribe(books => callback(BooksService.duplicate(books)));
   }
 
   offers(isbn: string[]) {

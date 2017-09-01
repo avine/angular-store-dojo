@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { BooksModel } from '../../models/books.model';
+import { BookModel } from '../../models/book.model';
 import { CartModel } from '../../models/cart.model';
 
 import { BooksService } from '../../services/books.service';
@@ -12,15 +12,27 @@ import { CartService } from '../../services/cart.service';
   styleUrls: ['./books-list.component.css']
 })
 export class BooksListComponent implements OnInit {
-  public books: BooksModel[] = [];
-  public cart: CartModel[] = [];
+  books: BookModel[] = [];
+  units = {};
 
-  constructor(private booksService: BooksService, private cartService: CartService) {
+  constructor(
+    private booksService: BooksService,
+    private cartService: CartService) {
   }
 
   ngOnInit() {
-    this.booksService.list(books => this.books = books);
-    this.cartService.subscribe(cart => this.cart = cart); // TODO: Use this to ckeck the number of units for each book...
+    this.booksService.books.subscribe(books =>
+      this.books = BooksService.duplicate(books)
+    );
+    this.cartService.cart.subscribe(items => {
+      this.units = {};
+      items.forEach(item =>
+        this.units[item.isbn] = item.units
+      );
+    });
   }
 
+  unitsChanged(book: BookModel, units: number) {
+    this.cartService.set(book, units);
+  }
 }

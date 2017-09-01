@@ -1,3 +1,7 @@
-<section *ngFor="let book of books; let i = index">
-  <app-books-book [book]="book" [index]="i + 1"></app-books-book>
+<section *ngFor="let book of books">
+  <app-books-book
+    [book]="book"
+    [units]="units[book.isbn]"
+    (unitsChanged)="unitsChanged(book, $event)">
+  </app-books-book>
 </section>
