@@ -1,5 +1,5 @@
 .container {
-  --container-max-width: 990px; /* 990px - 2 * 15px = 960px */
+  --container-max-width: 670px; /* 670px - 2 * 15px = 640px */
 
   margin: 0 15px;
   padding: 0 calc(50% - var(--container-max-width)/2);
