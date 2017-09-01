@@ -52,6 +52,8 @@ export class BooksCartComponent implements OnInit {
         this.offers = offers.json().offers as OfferModel[];
         this.calculate();
       });
+    } else {
+      this.dicountPrices = [];
     }
   }
 
