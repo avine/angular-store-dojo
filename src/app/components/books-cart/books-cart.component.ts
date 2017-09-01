@@ -26,7 +26,7 @@ export class BooksCartComponent implements OnInit {
   ngOnInit() {
     this.cartService.cart.subscribe(items => {
       this.items = items;
-      this.getFullPrice();
+      this.fullPrice = this.cartService.getFullPrice();
       this.getOffers();
     });
   }
@@ -37,12 +37,6 @@ export class BooksCartComponent implements OnInit {
 
   onEmpty() {
     this.cartService.empty();
-  }
-
-  getFullPrice() {
-    this.fullPrice = this.items.reduce(
-      (price, item: CartModel) => price + item.price * item.units, 0
-    );
   }
 
   getOffers() {

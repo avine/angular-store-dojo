@@ -36,4 +36,8 @@ export class CartService {
     this.items = [];
     this.next();
   }
+
+  getFullPrice() {
+    return this.items.reduce((price, item) => price + item.price * item.units, 0);
+  }
 }
