@@ -32,6 +32,28 @@
   color: dodgerblue;
 }
 
+.remove {
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--border-radius);
+  border: none;
+  background-color: #eee;
+  color: #999;
+}
+
+.checkout {
+  margin-top: var(--space-large);
+  text-align: center;
+}
+
+.checkout button {
+  padding: 1rem 2rem;
+  border-radius: var(--border-radius);
+  border: none;
+  background-color: coral;
+  color: #fff;
+  font-size: 1.5rem;
+}
+
 .cart-empty {
   color: #999;
   font-style: italic;

@@ -31,7 +31,7 @@ export class BooksListComponent implements OnInit {
     });
   }
 
-  unitsChanged(book: BookModel, units: string) {
+  onUnitsChanged(book: BookModel, units: string) {
     this.cartService.set(book, parseInt(units, 10));
   }
 }

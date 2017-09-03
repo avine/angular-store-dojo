@@ -8,12 +8,13 @@
 }
 
 .title {
+  margin-top: 4rem;
   text-align: center;
 }
 
 .nav-list {
   display: flex;
-  margin-bottom: var(--space-large);
+  margin: var(--space-large) 0;
   border-bottom: 1px solid var(--border-color);
 }
 
@@ -28,4 +29,9 @@
 .nav-active {
   background-color: var(--color-brand);
   color: #fff;
+}
+
+.footer {
+  padding: var(--space-large) 0;
+  text-align: right;
 }

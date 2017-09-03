@@ -4,37 +4,37 @@
       <th>Prix unitaire</th>
       <th>Quantité</th>
       <th>Sous-total</th>
-      <th>Action</th>
+      <th><button class="remove" *ngIf="items.length >= 2" (click)="onEmpty()">Tout supprimer</button></th>
     </tr>
   <tr *ngFor="let item of items; let i = index">
     <td class="item-title">{{ item.title }}</td>
     <td>{{ item.price }} &euro;</td>
     <td>x {{ item.units }}</td>
     <td>{{ itemsPrice[i] }} &euro;</td>
-    <td><button (click)="onDelete(item)">Supprimer</button></td>
+    <td><button class="remove" (click)="onDelete(item)">Supprimer</button></td>
   </tr>
 </table>
 
-<button *ngIf="items.length >= 2" (click)="onEmpty()">Tout supprimer</button>
-
-<p class="align-right" *ngIf="fullPrice">
+<h3 class="align-right" *ngIf="fullPrice">
   Prix :
-  <strong [ngClass]="{ 'price-dashed': bestOffer }">{{ fullPrice }} &euro;</strong>
   <strong class="bestPrice" *ngIf="bestOffer">{{ bestOffer.price }} &euro;</strong>
-</p>
+  <strong [ngClass]="{ 'price-dashed': bestOffer }">{{ fullPrice }} &euro;</strong>
+</h3>
 
 <p class="offer-desc align-right" *ngIf="bestOffer" [ngSwitch]="bestOffer.type">
   <ng-container *ngSwitchCase="'percentage'">
-    Réduction de {{ bestOffer.value }} % !
+    Profitez d'une réduction de {{ bestOffer.value }} % !
   </ng-container>
   <ng-container *ngSwitchCase="'minus'">
-      Réduction de {{ bestOffer.value }} &euro; !
+    Profitez d'une réduction de {{ bestOffer.value }} &euro; !
   </ng-container>
   <ng-container *ngSwitchCase="'slice'">
-      Réduction de {{ bestOffer.value }} &euro; par tranche de {{ bestOffer.sliceValue }} &euro; !
+    Profitez d'une réduction de {{ bestOffer.value }} &euro; par tranche de {{ bestOffer.sliceValue }} &euro; !
   </ng-container>
 </p>
 
-<p style="text-align:center" *ngIf="items.length"><button (click)="checkout()">Régler maintenant !</button></p>
+<p class="checkout" *ngIf="items.length">
+  <button (click)="checkout()">Régler maintenant !</button>
+</p>
 
 <p class="cart-empty" *ngIf="!items.length">Votre panier est vide.</p>

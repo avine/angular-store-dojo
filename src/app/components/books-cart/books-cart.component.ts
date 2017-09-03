@@ -56,10 +56,10 @@ export class BooksCartComponent implements OnInit {
   }
 
   checkout() {
-    window.alert(
-      'Montant à régler : ' +
-      (this.bestOffer ? this.bestOffer.price : this.fullPrice) +
-      ' € (veuillez patienter, vous aller maintenant être redirigé vers l\'agence de Xebia... ;-)'
+    const amount = this.bestOffer ? this.bestOffer.price : this.fullPrice;
+    window.alert(`
+Montant à régler : ${amount} €
+Veuillez patienter, vous allez être redirigé vers l'agence Xebia...`
     );
   }
 }

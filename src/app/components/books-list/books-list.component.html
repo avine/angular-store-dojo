@@ -2,6 +2,6 @@
   <app-books-book
     [book]="book"
     [units]="units[book.isbn]"
-    (unitsChanged)="unitsChanged(book, $event)">
+    (onUnitsChanged)="onUnitsChanged(book, $event)">
   </app-books-book>
 </section>

@@ -1,5 +1,7 @@
 <article class="container">
   <div class="description">
+    <img class="cover" [src]="book.cover">
+
     <h2 class="title">{{ book.title }}</h2>
 
     <ng-container *ngFor="let synopsis of book.synopsis; let i = index">
@@ -12,12 +14,13 @@
     </a>
   </div>
 
-  <label class="selection">
-    <img [src]="book.cover" class="cover">
+  <label class="action">
+    <div class="action-inner">
+      <h3 class="price">{{ book.price }} &euro;</h3>
 
-    <h3 class="price">{{ book.price }} &euro;</h3>
+      <input class="units-input" type="number" min="0" [value]="units || 0" #unitsInput (input)="onChange(unitsInput.value)">
 
-    <input class="units-input" type="number" min="0" [value]="units || 0" #unitsInput (input)="onChange(unitsInput.value)">
-    <small class="units-type">article(s)</small>
+      <small class="units-type">quantité</small>
+    </div>
   </label>
 </article>

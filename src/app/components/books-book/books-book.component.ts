@@ -10,7 +10,7 @@ import { BookModel } from '../../models/book.model';
 export class BooksBookComponent implements OnInit {
   @Input() book: BookModel;
   @Input() units: number;
-  @Output() unitsChanged = new EventEmitter<number>();
+  @Output() onUnitsChanged = new EventEmitter<number>();
   readMore = false;
 
   constructor() {
@@ -20,6 +20,6 @@ export class BooksBookComponent implements OnInit {
   }
 
   onChange(units: number) {
-    this.unitsChanged.emit(units);
+    this.onUnitsChanged.emit(units);
   }
 }
