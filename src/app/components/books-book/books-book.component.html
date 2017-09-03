@@ -16,6 +16,7 @@
 
   <label class="action">
     <div class="action-inner">
+      <small>Prix :</small>
       <h3 class="price">{{ book.price }} &euro;</h3>
 
       <input class="units-input" type="number" min="0" [value]="units || 0" #unitsInput (input)="onChange(unitsInput.value)">

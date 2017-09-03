@@ -16,7 +16,7 @@
 </table>
 
 <h3 class="align-right" *ngIf="fullPrice">
-  Prix :
+  Prix total :
   <strong class="bestPrice" *ngIf="bestOffer">{{ bestOffer.price }} &euro;</strong>
   <strong [ngClass]="{ 'price-dashed': bestOffer }">{{ fullPrice }} &euro;</strong>
 </h3>
