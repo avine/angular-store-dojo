@@ -14,6 +14,10 @@
   text-align: right;
 }
 
+.items th {
+  color: #999;
+}
+
 .items .item-title {
   text-align: left;
 }

@@ -59,7 +59,7 @@ export class BooksCartComponent implements OnInit {
     window.alert(
       'Montant à régler : ' +
       (this.bestOffer ? this.bestOffer.price : this.fullPrice) +
-      ' €'
+      ' € (veuillez patienter, vous aller maintenant être redirigé vers l\'agence de Xebia... ;-)'
     );
   }
 }
