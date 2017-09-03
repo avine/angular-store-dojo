@@ -13,8 +13,10 @@ import { BooksService } from '../../services/books.service';
 })
 export class BooksCartComponent implements OnInit {
   items: BookModel[] = [];
+  itemsPrice: number[] = [];
   fullPrice: number;
   offers: OfferModel[];
+  bestOffer: OfferModel;
 
   constructor(
     private cartService: CartService,
@@ -24,6 +26,7 @@ export class BooksCartComponent implements OnInit {
   ngOnInit() {
     this.cartService.cart.subscribe(items => {
       this.items = items;
+      this.itemsPrice = this.items.map(item => item.price * item.units);
       this.fullPrice = this.cartService.getFullPrice();
       this.getOffers();
     });
@@ -44,9 +47,19 @@ export class BooksCartComponent implements OnInit {
         this.offers = this.cartService.getDiscountPrices(
           offers.json().offers as OfferModel[]
         );
+        this.bestOffer = this.offers[0];
       });
     } else {
       this.offers = [];
+      this.bestOffer = null;
     }
+  }
+
+  checkout() {
+    window.alert(
+      'Montant à régler : ' +
+      (this.bestOffer ? this.bestOffer.price : this.fullPrice) +
+      ' €'
+    );
   }
 }

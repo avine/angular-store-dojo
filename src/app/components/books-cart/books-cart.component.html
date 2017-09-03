@@ -1,34 +1,40 @@
-<section *ngFor="let item of items">
-  <article>
-    {{ item.title }}
-    {{ item.price }} &euro;
-    {{ item.units }} article(s)
-    <button (click)="onDelete(item)">Supprimer</button>
-  </article>
-</section>
+<table class="items" *ngIf="items.length">
+  <tr class="items-desc">
+      <th class="item-title">Article</th>
+      <th>Prix unitaire</th>
+      <th>Quantité</th>
+      <th>Sous-total</th>
+      <th>Action</th>
+    </tr>
+  <tr *ngFor="let item of items; let i = index">
+    <td class="item-title">{{ item.title }}</td>
+    <td>{{ item.price }} &euro;</td>
+    <td>x {{ item.units }}</td>
+    <td>{{ itemsPrice[i] }} &euro;</td>
+    <td><button (click)="onDelete(item)">Supprimer</button></td>
+  </tr>
+</table>
 
 <button *ngIf="items.length >= 2" (click)="onEmpty()">Tout supprimer</button>
 
-<p *ngIf="fullPrice">Prix : {{ fullPrice }} &euro;</p>
+<p class="align-right" *ngIf="fullPrice">
+  Prix :
+  <strong [ngClass]="{ 'price-dashed': bestOffer }">{{ fullPrice }} &euro;</strong>
+  <strong class="bestPrice" *ngIf="bestOffer">{{ bestOffer.price }} &euro;</strong>
+</p>
 
-<!--<p *ngFor="let discount of offers">
-  {{ discount.type }}
-  {{ discount.price }}
-</p>-->
+<p class="offer-desc align-right" *ngIf="bestOffer" [ngSwitch]="bestOffer.type">
+  <ng-container *ngSwitchCase="'percentage'">
+    Réduction de {{ bestOffer.value }} % !
+  </ng-container>
+  <ng-container *ngSwitchCase="'minus'">
+      Réduction de {{ bestOffer.value }} &euro; !
+  </ng-container>
+  <ng-container *ngSwitchCase="'slice'">
+      Réduction de {{ bestOffer.value }} &euro; par tranche de {{ bestOffer.sliceValue }} &euro; !
+  </ng-container>
+</p>
 
-<ng-container *ngIf="offers.length" [ngSwitch]="offers[0].type">
-  <p *ngSwitchCase="'percentage'">
-    Votre prix : {{ offers[0].price }} &euro;<br />
-    Vous avez une réduction de {{ offers[0].value }} % !
-  </p>
-  <p *ngSwitchCase="'minus'">
-      Votre prix : {{ offers[0].price }} &euro;<br />
-      Vous avez une réduction de {{ offers[0].value }} &euro; !
-  </p>
-  <p *ngSwitchCase="'slice'">
-      Votre prix : {{ offers[0].price }} &euro;<br />
-      Vous avez une réduction de {{ offers[0].value }} &euro; par tranche de {{ offers[0].sliceValue }} &euro; !
-  </p>
-</ng-container>
+<p *ngIf="items.length"><button (click)="checkout()">Régler maintenant !</button></p>
 
-<p *ngIf="!items.length">Votre panier est vide.</p>
+<p class="cart-empty" *ngIf="!items.length">Votre panier est vide.</p>

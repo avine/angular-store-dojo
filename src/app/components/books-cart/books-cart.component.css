@@ -1,0 +1,38 @@
+.items {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.items tr {
+  border-bottom: 1px solid #ddd;
+}
+
+.items th,
+.items td {
+  padding: 0.5rem;
+  font-weight: normal;
+  text-align: right;
+}
+
+.items .item-title {
+  text-align: left;
+}
+
+.price-dashed {
+  color: #999;
+  font-weight: normal;
+  text-decoration: line-through;
+}
+
+.offer-desc {
+  color: dodgerblue;
+}
+
+.cart-empty {
+  color: #999;
+  font-style: italic;
+}
+
+.align-right {
+  text-align: right;
+}
