@@ -15,7 +15,7 @@
 }
 
 .items th {
-  color: #999;
+  color: var(--color-alt);
 }
 
 .items .item-title {
@@ -23,7 +23,7 @@
 }
 
 .price-dashed {
-  color: #999;
+  color: var(--color-alt);
   font-weight: normal;
   text-decoration: line-through;
 }
@@ -37,11 +37,11 @@
   border-radius: var(--border-radius);
   border: none;
   background-color: #eee;
-  color: #999;
+  color: var(--color-alt);
 }
 
 .checkout {
-  margin-top: var(--space-large);
+  margin-top: var(--space-lg);
   text-align: center;
 }
 
@@ -49,13 +49,13 @@
   padding: 1rem 2rem;
   border-radius: var(--border-radius);
   border: none;
-  background-color: coral;
-  color: #fff;
+  background-color: var(--color-alt);
+  color: white;
   font-size: 1.5rem;
 }
 
 .cart-empty {
-  color: #999;
+  color: var(--color-alt);
   font-style: italic;
 }
 

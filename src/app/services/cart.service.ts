@@ -61,6 +61,7 @@ export class CartService {
           break;
       }
     }
+    // First offer is the best one
     return offers.sort((a, b) => a.price - b.price);
   }
 
@@ -69,7 +70,7 @@ export class CartService {
   }
 
   getMinus(value) {
-    return this.fullPrice > value ? this.fullPrice - value : this.fullPrice;
+    return Math.max(this.fullPrice - value, 0);
   }
 
   getSlice(value, sliceValue) {

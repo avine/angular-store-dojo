@@ -1,10 +1,14 @@
 :root {
-  --space-large: 2.5rem;
-  --space-medium: 1.5rem;
-  --color-default: #444;
+  --space-lg: 2.5rem;
+  --space-md: 1.5rem;
+  --space-sm: 0.75rem;
+  --color-def: #444;
+  --color-alt: #999;
   --color-brand: dodgerblue;
-  --border-color: #ccc;
+  --color-alt: coral;
   --border-radius: 3px;
+  --border-color: #ccc;
+  --bg-color: #eee;
   --transition-duration: 0.25s;
 }
 
@@ -12,24 +16,27 @@ html {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-size: 13px;
   line-height: 1.5em;
-  color: var(--color-default);
+  color: var(--color-def);
 }
 
 body {
   margin: 0;
 }
 
-a, a:link {
+a,
+a:link {
   color: var(--color-brand);
   text-decoration: none;
 }
 
-a:hover, a:active, a:focus {
+a:hover,
+a:active,
+a:focus {
   text-decoration: underline;
 }
 
 hr {
-  margin: var(--space-medium) 0;
+  margin: var(--space-md) 0;
   border: 0 solid var(--color-brand);
   border-top-width: 1px;
 }
