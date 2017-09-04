@@ -3,11 +3,12 @@
   --space-md: 1.5rem;
   --space-sm: 0.75rem;
   --color-def: #444;
-  --color-alt: #999;
+  --color-alt: #aaa;
   --color-brand: dodgerblue;
-  --color-alt: coral;
+  --color-secondary: coral;
+  --color-alert: firebrick;
   --border-radius: 3px;
-  --border-color: #ccc;
+  --border-color: #ddd;
   --bg-color: #eee;
   --transition-duration: 0.25s;
 }
@@ -36,7 +37,7 @@ a:focus {
 }
 
 hr {
-  margin: var(--space-md) 0;
+  margin: var(--space-lg) 0;
   border: 0 solid var(--color-brand);
   border-top-width: 1px;
 }
