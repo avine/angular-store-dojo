@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs/Subscription';
 
 import { BookModel } from '../../models/book.model';
 import { OfferModel } from '../../models/offer.model';
@@ -11,15 +12,20 @@ import { BooksService } from '../../services/books.service';
   templateUrl: './books-basket.component.html',
   styleUrls: ['./books-basket.component.css']
 })
-export class BooksBasketComponent implements OnInit {
+export class BooksBasketComponent implements OnInit, OnDestroy {
   total: number;
+  subscription: Subscription;
 
   constructor(private cartService: CartService) {
   }
 
   ngOnInit() {
-    this.cartService.cart.subscribe(items => {
+    this.subscription = this.cartService.cart.subscribe(items => {
       this.total = items.reduce((total, item) => total + item.units, 0);
     });
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 }

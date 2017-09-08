@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs/Subscription';
 
 import { BookModel } from '../../models/book.model';
 import { OfferModel } from '../../models/offer.model';
@@ -11,12 +12,13 @@ import { BooksService } from '../../services/books.service';
   templateUrl: './books-cart.component.html',
   styleUrls: ['./books-cart.component.css']
 })
-export class BooksCartComponent implements OnInit {
+export class BooksCartComponent implements OnInit, OnDestroy {
   items: BookModel[] = [];
   itemsPrice: number[] = [];
   fullPrice: number;
   offers: OfferModel[];
   bestOffer: OfferModel;
+  subscription: Subscription;
 
   constructor(
     private cartService: CartService,
@@ -24,12 +26,16 @@ export class BooksCartComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.cartService.cart.subscribe(items => {
+    this.subscription = this.cartService.cart.subscribe(items => {
       this.items = items;
       this.itemsPrice = this.items.map(item => item.price * item.units);
       this.fullPrice = this.cartService.getFullPrice();
       this.getOffers();
     });
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
   onDelete(item) {
