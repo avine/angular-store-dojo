@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
+import { StoreModule } from '@ngrx/store';
 
 import { BooksService } from './services/books.service';
 import { CartService } from './services/cart.service';
@@ -12,6 +13,8 @@ import { BooksListComponent } from './components/books-list/books-list.component
 import { BooksCartComponent } from './components/books-cart/books-cart.component';
 import { BooksBasketComponent } from './components/books-basket/books-basket.component';
 import { AllInOneComponent } from './components/all-in-one/all-in-one.component';
+
+import { reducers } from './store/reducers';
 
 const routes = [
   { path: 'list', component: BooksListComponent },
@@ -32,7 +35,8 @@ const routes = [
   imports: [
     BrowserModule,
     HttpModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    StoreModule.forRoot(reducers)
   ],
   providers: [
     BooksService,
