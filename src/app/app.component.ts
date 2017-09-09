@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { Store } from '@ngrx/store';
 
 import { State } from './store/reducers';
-import * as testActions from './store/test.actions';
+import * as TestActions from './store/test.actions';
 
 @Component({
   selector: 'app-root',
@@ -22,11 +22,11 @@ export class AppComponent {
   }
 
   addToStore() {
-    this.store.dispatch(new testActions.Add(this.count++));
+    this.store.dispatch(new TestActions.Add(this.count++));
   }
 
   removeFromStore() {
-    this.store.dispatch(new testActions.Remove());
+    this.store.dispatch(new TestActions.Remove());
   }
   // Testing "ngrx"...
   // -----------------
