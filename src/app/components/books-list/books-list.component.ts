@@ -10,6 +10,7 @@ import { CartService } from '../../services/cart.service';
 
 import * as fromRoot from '../../store/reducers';
 import * as BooksActions from '../../store/books.actions';
+import * as CartActions from '../../store/cart.actions';
 
 @Component({
   selector: 'app-books-list',
@@ -43,6 +44,10 @@ export class BooksListComponent implements OnInit, OnDestroy {
   }
 
   onUnitsChanged(book: BookModel, units: string) {
+    // Previous version... (to be removed)
     this.cartService.set(book, parseInt(units, 10));
+
+    // New version... (in progress)
+    /*this.store.dispatch(new CartActions.SetBook({ book: book, units: parseInt(units, 10) }));*/
   }
 }

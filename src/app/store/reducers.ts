@@ -1,13 +1,20 @@
 import * as fromBooks from './books.reducer';
+import * as fromCart from './cart.reducer';
 
 export interface State {
-  shop: fromBooks.State;
+  books: fromBooks.State;
+  cart: fromCart.State;
 }
 
 export const reducers = {
-  shop: fromBooks.reducer
+  books: fromBooks.reducer,
+  cart: fromCart.reducer
 };
 
 export function getBooks(state: State) {
-  return state.shop.books;
+  return state.books;
+}
+
+export function getCartBooks(state: State) {
+  return state.cart.books;
 }
