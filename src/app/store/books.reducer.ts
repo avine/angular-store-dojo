@@ -19,7 +19,7 @@ export function reducer(state: State = initialState, action: BooksActions.All) {
     case BooksActions.GET_BOOKS_SUCCESS:
       return {
         ...state,
-        books: action.payload // FIXME: need a deep copy of that object ?
+        books: [...action.payload] // FIXME: need a deep copy of that object ?
       };
 
     default:

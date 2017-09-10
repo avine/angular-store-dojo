@@ -8,10 +8,6 @@ export class CartService {
   private items: BookModel[] = [];
   private fullPrice = 0;
 
-  static duplicate(items: BookModel[]) {
-    return items.map(item => Object.assign({}, item));
-  }
-
   constructor() {
   }
 

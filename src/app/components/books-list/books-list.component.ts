@@ -19,7 +19,7 @@ import * as BooksActions from '../../store/books.actions';
 export class BooksListComponent implements OnInit, OnDestroy {
   books: Observable<BookModel[]>;
   units = {};
-  subscriptions: Subscription[] = [];
+  subscription: Subscription;
 
   constructor(
     private cartService: CartService,
@@ -30,16 +30,16 @@ export class BooksListComponent implements OnInit, OnDestroy {
     this.store.dispatch(new BooksActions.GetBooks());
     this.books = this.store.select(fromRoot.getBooks);
 
-    this.subscriptions.push(this.cartService.cart.subscribe(items => {
+    this.subscription = this.cartService.cart.subscribe(items => {
       this.units = {};
       items.forEach(item =>
         this.units[item.isbn] = item.units
       );
-    }));
+    });
   }
 
   ngOnDestroy() {
-    this.subscriptions.forEach(subscription => subscription.unsubscribe());
+    this.subscription.unsubscribe();
   }
 
   onUnitsChanged(book: BookModel, units: string) {

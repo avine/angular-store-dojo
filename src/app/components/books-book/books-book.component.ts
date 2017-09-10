@@ -1,4 +1,10 @@
-import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component,
+  Input,
+  Output,
+  EventEmitter,
+  ChangeDetectionStrategy
+} from '@angular/core';
 
 import { BookModel } from '../../models/book.model';
 
@@ -8,17 +14,11 @@ import { BookModel } from '../../models/book.model';
   styleUrls: ['./books-book.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class BooksBookComponent implements OnInit {
+export class BooksBookComponent {
   @Input() book: BookModel;
   @Input() units: number;
   @Output() onUnitsChanged = new EventEmitter<number>();
   readMore = false;
-
-  constructor() {
-  }
-
-  ngOnInit() {
-  }
 
   onChange(units: number) {
     this.onUnitsChanged.emit(units);
