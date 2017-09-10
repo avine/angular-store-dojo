@@ -1,9 +1,13 @@
-import * as fromTest from './test.reducer';
+import * as fromBooks from './books.reducer';
 
 export interface State {
-  test: fromTest.State;
+  shop: fromBooks.State;
 }
 
 export const reducers = {
-  test: fromTest.reducer
+  shop: fromBooks.reducer
 };
+
+export function getBooks(state: State) {
+  return state.shop.books;
+}

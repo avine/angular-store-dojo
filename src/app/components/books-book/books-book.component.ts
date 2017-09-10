@@ -1,11 +1,12 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 
 import { BookModel } from '../../models/book.model';
 
 @Component({
   selector: 'app-books-book',
   templateUrl: './books-book.component.html',
-  styleUrls: ['./books-book.component.css']
+  styleUrls: ['./books-book.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BooksBookComponent implements OnInit {
   @Input() book: BookModel;

@@ -1,4 +1,4 @@
-<section *ngFor="let book of books">
+<section *ngFor="let book of books | async">
   <app-books-book
     [book]="book"
     [units]="units[book.isbn]"
