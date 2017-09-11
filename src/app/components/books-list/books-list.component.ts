@@ -9,8 +9,8 @@ import { BooksService } from '../../services/books.service';
 import { CartService } from '../../services/cart.service';
 
 import * as fromRoot from '../../store/reducers';
-import * as BooksActions from '../../store/books.actions';
-import * as CartActions from '../../store/cart.actions';
+import * as BooksActions from '../../store/books/books.actions';
+import * as CartActions from '../../store/cart/cart.actions';
 
 @Component({
   selector: 'app-books-list',

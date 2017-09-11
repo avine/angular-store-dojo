@@ -1,5 +1,5 @@
-import * as fromBooks from './books.reducer';
-import * as fromCart from './cart.reducer';
+import * as fromBooks from './books/books.reducer';
+import * as fromCart from './cart/cart.reducer';
 
 export interface State {
   books: fromBooks.State;

@@ -1,6 +1,6 @@
 import { Action } from '@ngrx/store';
 
-import { BookModel } from '../models/book.model';
+import { BookModel } from '../../models/book.model';
 import * as BooksActions from './books.actions';
 
 export type State = BookModel[];

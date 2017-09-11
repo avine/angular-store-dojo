@@ -5,9 +5,9 @@ import { Observable } from 'rxjs/Observable';
 import { Effect, Actions } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
 
-import { BookModel } from '../models/book.model';
-import { BooksService } from '../services/books.service';
-import * as BooksActions from '../store/books.actions';
+import { BookModel } from '../../models/book.model';
+import { BooksService } from '../../services/books.service';
+import * as BooksActions from './books.actions';
 
 @Injectable()
 export class BooksEffects {

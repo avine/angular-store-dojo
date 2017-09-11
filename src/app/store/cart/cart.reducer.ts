@@ -1,6 +1,6 @@
 import { Action } from '@ngrx/store';
 
-import { BookModel } from '../models/book.model';
+import { BookModel } from '../../models/book.model';
 import * as CartActions from './cart.actions';
 
 export interface State {

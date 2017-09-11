@@ -7,7 +7,7 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 
 import { reducers } from './store/reducers';
-import { BooksEffects } from './store/books.effects';
+import { BooksEffects } from './store/books/books.effects';
 
 import { BooksService } from './services/books.service';
 import { CartService } from './services/cart.service';
