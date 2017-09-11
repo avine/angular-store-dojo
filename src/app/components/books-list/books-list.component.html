@@ -1,7 +1,7 @@
 <section *ngFor="let book of books | async">
   <app-books-book
     [book]="book"
-    [units]="units[book.isbn]"
+    [units]="(units | async)[book.isbn]"
     (onUnitsChanged)="onUnitsChanged(book, $event)">
   </app-books-book>
 </section>

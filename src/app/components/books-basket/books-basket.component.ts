@@ -1,31 +1,23 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Subscription } from 'rxjs/Subscription';
+import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import { Store } from '@ngrx/store';
 
-import { BookModel } from '../../models/book.model';
-import { OfferModel } from '../../models/offer.model';
-
-import { CartService } from '../../services/cart.service';
-import { BooksService } from '../../services/books.service';
+import * as fromRoot from '../../store/reducers';
 
 @Component({
   selector: 'app-books-basket',
   templateUrl: './books-basket.component.html',
   styleUrls: ['./books-basket.component.css']
 })
-export class BooksBasketComponent implements OnInit, OnDestroy {
-  total: number;
-  subscription: Subscription;
+export class BooksBasketComponent implements OnInit {
+  total: Observable<number>;
 
-  constructor(private cartService: CartService) {
+  constructor(private store: Store<fromRoot.State>) {
   }
 
   ngOnInit() {
-    this.subscription = this.cartService.cart.subscribe(items => {
-      this.total = items.reduce((total, item) => total + item.units, 0);
+    this.total = this.store.select(fromRoot.getCartBooks).map(items => {
+      return items.reduce((total, item) => total + item.units, 0);
     });
-  }
-
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
   }
 }

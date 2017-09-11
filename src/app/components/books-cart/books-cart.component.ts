@@ -1,5 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Subscription } from 'rxjs/Subscription';
+import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 
 import { BookModel } from '../../models/book.model';
@@ -16,13 +15,12 @@ import * as fromRoot from '../../store/reducers';
   templateUrl: './books-cart.component.html',
   styleUrls: ['./books-cart.component.css']
 })
-export class BooksCartComponent implements OnInit, OnDestroy {
+export class BooksCartComponent implements OnInit {
   items: BookModel[] = [];
   itemsPrice: number[] = [];
   fullPrice: number;
   offers: OfferModel[];
   bestOffer: OfferModel;
-  subscription: Subscription;
 
   constructor(
     private store: Store<fromRoot.State>,
@@ -31,7 +29,7 @@ export class BooksCartComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.subscription = this.cartService.cart.subscribe(items => {
+    this.store.select(fromRoot.getCartBooks).subscribe(items => {
       this.items = items;
       this.itemsPrice = this.items.map(item => item.price * item.units);
       this.fullPrice = this.cartService.getFullPrice();
@@ -39,24 +37,12 @@ export class BooksCartComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
-  }
-
   onDelete(item) {
-    // Old version...
-    this.cartService.set(item, 0);
-
-    // New version...
-    // this.store.dispatch(new CartActions.SetBook(item, 0));
+    this.store.dispatch(new CartActions.SetBook(item, 0));
   }
 
   onEmpty() {
-    // Old version...
-    this.cartService.empty();
-
-    // New version...
-    // this.store.dispatch(new CartActions.EmptyCart());
+    this.store.dispatch(new CartActions.EmptyCart());
   }
 
   getOffers() {
