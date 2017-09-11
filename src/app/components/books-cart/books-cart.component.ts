@@ -1,11 +1,15 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
+import { Store } from '@ngrx/store';
 
 import { BookModel } from '../../models/book.model';
 import { OfferModel } from '../../models/offer.model';
 
 import { CartService } from '../../services/cart.service';
 import { BooksService } from '../../services/books.service';
+
+import * as CartActions from '../../store/cart/cart.actions';
+import * as fromRoot from '../../store/reducers';
 
 @Component({
   selector: 'app-books-cart',
@@ -21,6 +25,7 @@ export class BooksCartComponent implements OnInit, OnDestroy {
   subscription: Subscription;
 
   constructor(
+    private store: Store<fromRoot.State>,
     private cartService: CartService,
     private booksService: BooksService) {
   }
@@ -39,11 +44,19 @@ export class BooksCartComponent implements OnInit, OnDestroy {
   }
 
   onDelete(item) {
+    // Old version...
     this.cartService.set(item, 0);
+
+    // New version...
+    // this.store.dispatch(new CartActions.SetBook(item, 0));
   }
 
   onEmpty() {
+    // Old version...
     this.cartService.empty();
+
+    // New version...
+    // this.store.dispatch(new CartActions.EmptyCart());
   }
 
   getOffers() {

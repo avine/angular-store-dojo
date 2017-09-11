@@ -44,10 +44,10 @@ export class BooksListComponent implements OnInit, OnDestroy {
   }
 
   onUnitsChanged(book: BookModel, units: string) {
-    // Previous version... (to be removed)
+    // Old version...
     this.cartService.set(book, parseInt(units, 10));
 
-    // New version... (in progress)
-    /*this.store.dispatch(new CartActions.SetBook({ book: book, units: parseInt(units, 10) }));*/
+    // New version...
+    // this.store.dispatch(new CartActions.SetBook(book, parseInt(units, 10)));
   }
 }
