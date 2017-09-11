@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs/Subscription';
 import { Store } from '@ngrx/store';
 
 import { BookModel } from '../../models/book.model';
 import { OfferModel } from '../../models/offer.model';
 
-import { CartService } from '../../services/cart.service';
-import { BooksService } from '../../services/books.service';
+import { CartRules } from '../../rules/cart.rules';
 
 import * as CartActions from '../../store/cart/cart.actions';
 import * as fromRoot from '../../store/reducers';
@@ -15,26 +15,35 @@ import * as fromRoot from '../../store/reducers';
   templateUrl: './books-cart.component.html',
   styleUrls: ['./books-cart.component.css']
 })
-export class BooksCartComponent implements OnInit {
+export class BooksCartComponent implements OnInit, OnDestroy {
   items: BookModel[] = [];
   itemsPrice: number[] = [];
   fullPrice: number;
   offers: OfferModel[];
   bestOffer: OfferModel;
+  subscriptions: Subscription[] = [];
 
-  constructor(
-    private store: Store<fromRoot.State>,
-    private cartService: CartService,
-    private booksService: BooksService) {
+  constructor(private store: Store<fromRoot.State>) {
   }
 
   ngOnInit() {
-    this.store.select(fromRoot.getCartBooks).subscribe(items => {
+    this.subscriptions.push(this.store.select(fromRoot.getCartBooks).subscribe(items => {
       this.items = items;
-      this.itemsPrice = this.items.map(item => item.price * item.units);
-      this.fullPrice = this.cartService.getFullPrice();
+      const cartRules = new CartRules(this.items);
+      this.itemsPrice = cartRules.getBooksPrice();
+      this.fullPrice = cartRules.getFullPrice();
       this.getOffers();
-    });
+    }));
+
+    this.subscriptions.push(this.store.select(fromRoot.getCartOffers).subscribe(offers => {
+      const cartRules = new CartRules(this.items);
+      this.offers = cartRules.getDiscountPrices(offers);
+      this.bestOffer = this.offers[0];
+    }));
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.forEach(subscription => subscription.unsubscribe());
   }
 
   onDelete(item) {
@@ -48,10 +57,7 @@ export class BooksCartComponent implements OnInit {
   getOffers() {
     const isbn = this.items.map(item => item.isbn);
     if (isbn.length) {
-      this.booksService.getOffers(isbn).subscribe(offers => {
-        this.offers = this.cartService.getDiscountPrices(offers);
-        this.bestOffer = this.offers[0];
-      });
+      this.store.dispatch(new CartActions.GetOffers(isbn));
     } else {
       this.offers = [];
       this.bestOffer = null;

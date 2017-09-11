@@ -1,46 +1,43 @@
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-
 import { BookModel } from '../models/book.model';
 import { OfferModel } from '../models/offer.model';
 
-export class CartService {
-  cart = new BehaviorSubject<BookModel[]>([]);
-  private items: BookModel[] = [];
-  private fullPrice = 0;
+export class CartRules {
+  fullPrice: number;
 
-  constructor() {
+  constructor(public books: BookModel[]) {
+    this.setBooksPrice();
   }
 
-  private update() {
-    this.setFullPrice();
-    this.cart.next(this.items);
-  }
-
-  set(book: BookModel, units: number) {
-    if (units === 0) {
-      this.items = this.items.filter(item => item.isbn !== book.isbn);
-    } else {
-      const filtered = this.items.filter(item => item.isbn === book.isbn);
-      if (filtered.length) {
-        filtered[0].units = units;
-      } else {
-        this.items.push(Object.assign({ units }, book) as BookModel);
-      }
-    }
-    this.update();
-  }
-
-  empty() {
-    this.items = [];
-    this.update();
-  }
-
-  setFullPrice() {
-    this.fullPrice = this.items.reduce((price, item) => price + item.price * item.units, 0);
+  setBooksPrice() {
+    this.fullPrice = this.books.reduce((price, book) => price + book.price * book.units, 0);
   }
 
   getFullPrice() {
     return this.fullPrice;
+  }
+
+  addBook(book: BookModel, units: number) {
+    if (units === 0) {
+      this.books = this.books.filter(item => item.isbn !== book.isbn);
+    } else {
+      const match = this.books.filter(item => item.isbn === book.isbn);
+      if (match.length) {
+        match[0].units = units;
+      } else {
+        this.books.push(Object.assign({ units }, book) as BookModel);
+      }
+    }
+    this.setBooksPrice();
+  }
+
+  getBooksPrice() {
+    return this.books.map(book => book.price * book.units);
+  }
+
+  getUnitsPerIsbn() {
+    const units = {};
+    this.books.forEach(book => units[book.isbn] = book.units);
+    return units;
   }
 
   getDiscountPrices(offers: OfferModel[]) {

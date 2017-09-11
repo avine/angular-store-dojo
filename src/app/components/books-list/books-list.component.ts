@@ -8,6 +8,8 @@ import * as fromRoot from '../../store/reducers';
 import * as BooksActions from '../../store/books/books.actions';
 import * as CartActions from '../../store/cart/cart.actions';
 
+import { CartRules } from '../../rules/cart.rules';
+
 @Component({
   selector: 'app-books-list',
   templateUrl: './books-list.component.html',
@@ -23,12 +25,9 @@ export class BooksListComponent implements OnInit {
   ngOnInit() {
     this.store.dispatch(new BooksActions.GetBooks());
     this.books = this.store.select(fromRoot.getBooks);
-
-    this.units = this.store.select(fromRoot.getCartBooks).map(items => {
-      const units = {};
-      items.forEach(item => units[item.isbn] = item.units);
-      return units;
-    });
+    this.units = this.store.select(fromRoot.getCartBooks).map(
+      books => new CartRules(books).getUnitsPerIsbn()
+    );
   }
 
   onUnitsChanged(book: BookModel, units: string) {

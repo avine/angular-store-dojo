@@ -8,9 +8,9 @@ import { EffectsModule } from '@ngrx/effects';
 
 import { reducers } from './store/reducers';
 import { BooksEffects } from './store/books/books.effects';
+import { CartEffects } from './store/cart/cart.effects';
 
 import { BooksService } from './services/books.service';
-import { CartService } from './services/cart.service';
 
 import { AppComponent } from './app.component';
 import { BooksBookComponent } from './components/books-book/books-book.component';
@@ -40,12 +40,9 @@ const routes = [
     HttpModule,
     RouterModule.forRoot(routes),
     StoreModule.forRoot(reducers),
-    EffectsModule.forRoot([BooksEffects])
+    EffectsModule.forRoot([BooksEffects, CartEffects])
   ],
-  providers: [
-    BooksService,
-    CartService
-  ],
+  providers: [BooksService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

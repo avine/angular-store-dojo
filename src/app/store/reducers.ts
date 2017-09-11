@@ -18,3 +18,7 @@ export function getBooks(state: State) {
 export function getCartBooks(state: State) {
   return state.cart.books;
 }
+
+export function getCartOffers(state: State) {
+  return state.cart.offers;
+}
