@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
 import { Http } from '@angular/http';
 import { environment } from '../../environments/environment';
 
@@ -17,8 +18,15 @@ export class BooksService {
   }
 
   getOffers(isbn: string[]) {
-    return this.http.get(`${environment.booksUrl}/${isbn}/commercialOffers`).map(
-      response => response.json().offers as OfferModel[]
-    );
+    if (isbn && isbn.length) {
+      return this.http.get(`${environment.booksUrl}/${isbn}/commercialOffers`).map(
+        response => response.json().offers as OfferModel[]
+      );
+    } else {
+      return new Observable(observer => {
+        observer.next([]);
+        observer.complete();
+      });
+    }
   }
 }

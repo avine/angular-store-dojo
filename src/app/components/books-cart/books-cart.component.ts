@@ -56,12 +56,8 @@ export class BooksCartComponent implements OnInit, OnDestroy {
 
   getOffers() {
     const isbn = this.items.map(item => item.isbn);
-    if (isbn.length) {
-      this.store.dispatch(new CartActions.GetOffers(isbn));
-    } else {
-      this.offers = [];
-      this.bestOffer = null;
-    }
+    this.store.dispatch(new CartActions.GetOffers(isbn));
+
   }
 
   checkout() {
