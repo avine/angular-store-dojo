@@ -12,10 +12,12 @@ import { BooksService } from '../../services/books.service';
 @Injectable()
 export class CartEffects {
   @Effect()
-  getOffers: Observable<Action> = this.actions$.ofType(CartActions.GET_OFFERS)
+  getOffers$: Observable<Action> = this.actions$.ofType(CartActions.GET_OFFERS)
     .switchMap((action: CartActions.GetOffers) => this.booksService.getOffers(action.payload))
     .map((offers: OfferModel[]) => new CartActions.GetOffersSuccess(offers));
 
-  constructor(private actions$: Actions, private booksService: BooksService) {
-  }
+  constructor(
+    private actions$: Actions,
+    private booksService: BooksService
+  ) { }
 }

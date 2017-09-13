@@ -16,16 +16,16 @@ import { CartRules } from '../../rules/cart.rules';
   styleUrls: ['./books-list.component.css']
 })
 export class BooksListComponent implements OnInit {
-  books: Observable<BookModel[]>;
-  units: Observable<{}>;
+  books$: Observable<BookModel[]>;
+  units$: Observable<{}>;
 
   constructor(private store: Store<fromRoot.State>) {
   }
 
   ngOnInit() {
     this.store.dispatch(new BooksActions.GetBooks());
-    this.books = this.store.select(fromRoot.getBooks);
-    this.units = this.store.select(fromRoot.getCartBooks).map(
+    this.books$ = this.store.select(fromRoot.getBooks);
+    this.units$ = this.store.select(fromRoot.getCartBooks).map(
       books => new CartRules(books).getUnitsPerIsbn()
     );
   }

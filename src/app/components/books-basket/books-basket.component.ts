@@ -10,14 +10,14 @@ import * as fromRoot from '../../store/reducers';
   styleUrls: ['./books-basket.component.css']
 })
 export class BooksBasketComponent implements OnInit {
-  total: Observable<number>;
+  total$: Observable<number>;
 
   constructor(private store: Store<fromRoot.State>) {
   }
 
   ngOnInit() {
-    this.total = this.store.select(fromRoot.getCartBooks).map(items => {
-      return items.reduce((total, item) => total + item.units, 0);
-    });
+    this.total$ = this.store.select(fromRoot.getCartBooks).map(
+      books => books.reduce((total, book) => total + book.units, 0)
+    );
   }
 }
