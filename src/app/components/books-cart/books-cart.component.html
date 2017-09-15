@@ -1,40 +1,40 @@
-<table class="items" *ngIf="items.length">
+<table class="items" *ngIf="booksCount$ | async">
   <tr class="items-desc">
       <th class="item-title">Article</th>
       <th>Prix unitaire</th>
       <th>Quantité</th>
       <th>Sous-total</th>
-      <th><button class="remove" *ngIf="items.length >= 2" (click)="onEmpty()">Tout supprimer</button></th>
+      <th><button class="remove" *ngIf="(booksCount$ | async) >= 2" (click)="onEmpty()">Tout supprimer</button></th>
     </tr>
-  <tr *ngFor="let item of items; let i = index">
+  <tr *ngFor="let item of books$ | async; let i = index">
     <td class="item-title">{{ item.title }}</td>
     <td>{{ item.price }} &euro;</td>
     <td>x {{ item.units }}</td>
-    <td>{{ itemsPrice[i] }} &euro;</td>
+    <td>{{ (booksPrice$ | async)[i] }} &euro;</td>
     <td><button class="remove" (click)="onDelete(item)">Supprimer</button></td>
   </tr>
 </table>
 
-<h3 class="align-right" *ngIf="fullPrice">
+<h3 class="align-right" *ngIf="fullPrice$ | async">
   Prix total :
-  <strong class="bestPrice" *ngIf="bestOffer">{{ bestOffer.price }} &euro;</strong>
-  <strong [ngClass]="{ 'price-dashed': bestOffer }">{{ fullPrice }} &euro;</strong>
+  <strong class="bestPrice" *ngIf="bestOffer$ | async">{{ (bestOffer$ | async).price }} &euro;</strong>
+  <strong [ngClass]="{ 'price-dashed': bestOffer$ | async }">{{ fullPrice$ | async }} &euro;</strong>
 </h3>
 
-<p class="offer-desc align-right" *ngIf="bestOffer" [ngSwitch]="bestOffer.type">
+<p class="offer-desc align-right" *ngIf="bestOffer$ | async" [ngSwitch]="(bestOffer$ | async).type">
   <ng-container *ngSwitchCase="'percentage'">
-    Profitez d'une réduction de {{ bestOffer.value }} % !
+    Profitez d'une réduction de {{ (bestOffer$ | async).value }} % !
   </ng-container>
   <ng-container *ngSwitchCase="'minus'">
-    Profitez d'une réduction de {{ bestOffer.value }} &euro; !
+    Profitez d'une réduction de {{ (bestOffer$ | async).value }} &euro; !
   </ng-container>
   <ng-container *ngSwitchCase="'slice'">
-    Profitez d'une réduction de {{ bestOffer.value }} &euro; par tranche de {{ bestOffer.sliceValue }} &euro; !
+    Profitez d'une réduction de {{ (bestOffer$ | async).value }} &euro; par tranche de {{ (bestOffer$ | async).sliceValue }} &euro; !
   </ng-container>
 </p>
 
-<p class="checkout" *ngIf="items.length">
+<p class="checkout" *ngIf="booksCount$ | async">
   <button (click)="checkout()">Régler maintenant !</button>
 </p>
 
-<p class="cart-empty" *ngIf="!items.length">Votre panier est vide.</p>
+<p class="cart-empty" *ngIf="!(booksCount$ | async)">Votre panier est vide.</p>

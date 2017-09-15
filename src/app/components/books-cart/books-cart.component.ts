@@ -1,4 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/combineLatest';
 import { Subscription } from 'rxjs/Subscription';
 import { Store } from '@ngrx/store';
 
@@ -16,30 +18,38 @@ import * as fromRoot from '../../store/reducers';
   styleUrls: ['./books-cart.component.css']
 })
 export class BooksCartComponent implements OnInit, OnDestroy {
-  items: BookModel[] = [];
-  itemsPrice: number[] = [];
-  fullPrice: number;
-  offers: OfferModel[];
-  bestOffer: OfferModel;
+  books$: Observable<BookModel[]>;
+  booksCount$: Observable<number>;
+  booksPrice$: Observable<number[]>;
+  fullPrice$: Observable<number>;
+  offers$: Observable<OfferModel[]>;
+  bestOffer$: Observable<OfferModel>;
+  amount$: Observable<number>;
   subscriptions: Subscription[] = [];
 
   constructor(private store: Store<fromRoot.State>) {
   }
 
   ngOnInit() {
-    this.subscriptions.push(this.store.select(fromRoot.getCartBooks).subscribe(items => {
-      this.items = items;
-      const cartRules = new CartRules(this.items);
-      this.itemsPrice = cartRules.getBooksPrice();
-      this.fullPrice = cartRules.getFullPrice();
-      this.getOffers();
-    }));
+    this.books$ = this.store.select(fromRoot.getCartBooks);
+    this.booksCount$ = this.books$.map(books => books.length);
+    this.booksPrice$ = this.books$.map(books => new CartRules(books).getBooksPrice());
+    this.fullPrice$ = this.books$.map(books => new CartRules(books).getFullPrice());
 
-    this.subscriptions.push(this.store.select(fromRoot.getCartOffers).subscribe(offers => {
-      const cartRules = new CartRules(this.items);
-      this.offers = cartRules.getDiscountPrices(offers);
-      this.bestOffer = this.offers[0];
-    }));
+    this.offers$ = this.books$.switchMap(
+      books => this.store.select(fromRoot.getCartOffers).map(
+        offers => new CartRules(books).getDiscountPrices(offers)
+      )
+    );
+    this.bestOffer$ = this.offers$.map(offers => offers[0]);
+
+    this.amount$ = Observable.combineLatest(this.fullPrice$, this.bestOffer$).map(
+      value => value[1] ? value[1].price : value[0]
+    );
+
+    this.subscriptions.push(this.books$.subscribe(
+      books => this.store.dispatch(new CartActions.GetOffers(books.map(book => book.isbn)))
+    ));
   }
 
   ngOnDestroy() {
@@ -54,17 +64,12 @@ export class BooksCartComponent implements OnInit, OnDestroy {
     this.store.dispatch(new CartActions.EmptyCart());
   }
 
-  getOffers() {
-    const isbn = this.items.map(item => item.isbn);
-    this.store.dispatch(new CartActions.GetOffers(isbn));
-
-  }
-
   checkout() {
-    const amount = this.bestOffer ? this.bestOffer.price : this.fullPrice;
+    // FIXME: how to calculate this using this.bestOffer$ ??
+    /*const amount = this.bestOffer ? this.bestOffer.price : this.fullPrice;
     window.alert(`
 Montant à régler : ${amount} €
 Veuillez patienter, vous allez être redirigé vers l'agence Xebia...`
-    );
+    );*/
   }
 }
