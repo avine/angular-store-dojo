@@ -16,6 +16,8 @@ import { AppComponent } from './app.component';
 import { BooksBookComponent } from './components/books-book/books-book.component';
 import { BooksListComponent } from './components/books-list/books-list.component';
 import { BooksCartComponent } from './components/books-cart/books-cart.component';
+import { BooksCartSummaryComponent } from './components/books-cart/books-cart-summary/books-cart-summary.component';
+import { BooksCartPriceComponent } from './components/books-cart/books-cart-price/books-cart-price.component';
 import { BooksBasketComponent } from './components/books-basket/books-basket.component';
 import { AllInOneComponent } from './components/all-in-one/all-in-one.component';
 
@@ -32,6 +34,8 @@ const routes = [
     BooksBookComponent,
     BooksListComponent,
     BooksCartComponent,
+    BooksCartSummaryComponent,
+    BooksCartPriceComponent,
     BooksBasketComponent,
     AllInOneComponent
   ],

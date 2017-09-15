@@ -1,0 +1,28 @@
+
+.align-right {
+  text-align: right;
+}
+
+.price-dashed {
+  color: var(--color-alt);
+  font-weight: normal;
+  text-decoration: line-through;
+}
+
+.offer-desc {
+  color: dodgerblue;
+}
+
+.checkout {
+  margin-top: var(--space-lg);
+  text-align: center;
+}
+
+.checkout button {
+  padding: 1rem 2rem;
+  border-radius: var(--border-radius);
+  border: none;
+  background-color: var(--color-secondary);
+  color: white;
+  font-size: 1.5rem;
+}

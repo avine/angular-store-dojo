@@ -1,0 +1,31 @@
+.items {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.items tr {
+  border-bottom: 1px solid #ddd;
+}
+
+.items th,
+.items td {
+  padding: 0.5rem;
+  font-weight: normal;
+  text-align: right;
+}
+
+.items th {
+  color: var(--color-alt);
+}
+
+.items .item-title {
+  text-align: left;
+}
+
+.remove {
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--border-radius);
+  border: none;
+  background-color: #eee;
+  color: var(--color-alt);
+}

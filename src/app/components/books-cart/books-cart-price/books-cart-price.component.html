@@ -1,0 +1,21 @@
+<h3 class="align-right" *ngIf="fullPrice">
+  Prix total :
+  <strong class="bestPrice" *ngIf="bestOffer">{{ bestOffer.price }} &euro;</strong>
+  <strong [ngClass]="{ 'price-dashed': bestOffer }">{{ fullPrice }} &euro;</strong>
+</h3>
+
+<p class="offer-desc align-right" *ngIf="bestOffer" [ngSwitch]="bestOffer.type">
+  <ng-container *ngSwitchCase="'percentage'">
+    Profitez d'une réduction de {{ bestOffer.value }} % !
+  </ng-container>
+  <ng-container *ngSwitchCase="'minus'">
+    Profitez d'une réduction de {{ bestOffer.value }} &euro; !
+  </ng-container>
+  <ng-container *ngSwitchCase="'slice'">
+    Profitez d'une réduction de {{ bestOffer.value }} &euro; par tranche de {{ bestOffer.sliceValue }} &euro; !
+  </ng-container>
+</p>
+
+<p class="checkout" *ngIf="booksCount">
+  <button (click)="checkout()">Régler maintenant !</button>
+</p>

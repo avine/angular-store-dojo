@@ -1,40 +1,13 @@
-<table class="items" *ngIf="booksCount$ | async">
-  <tr class="items-desc">
-      <th class="item-title">Article</th>
-      <th>Prix unitaire</th>
-      <th>Quantité</th>
-      <th>Sous-total</th>
-      <th><button class="remove" *ngIf="(booksCount$ | async) >= 2" (click)="onEmpty()">Tout supprimer</button></th>
-    </tr>
-  <tr *ngFor="let item of books$ | async; let i = index">
-    <td class="item-title">{{ item.title }}</td>
-    <td>{{ item.price }} &euro;</td>
-    <td>x {{ item.units }}</td>
-    <td>{{ (booksPrice$ | async)[i] }} &euro;</td>
-    <td><button class="remove" (click)="onDelete(item)">Supprimer</button></td>
-  </tr>
-</table>
+<app-books-cart-summary *ngIf="booksCount$ | async"
+  [books]="books$ | async"
+  [booksPrice]="booksPrice$ | async"
+  (onDelete)="onDelete($event)"
+  (onEmpty)="onEmpty()"></app-books-cart-summary>
 
-<h3 class="align-right" *ngIf="fullPrice$ | async">
-  Prix total :
-  <strong class="bestPrice" *ngIf="bestOffer$ | async">{{ (bestOffer$ | async).price }} &euro;</strong>
-  <strong [ngClass]="{ 'price-dashed': bestOffer$ | async }">{{ fullPrice$ | async }} &euro;</strong>
-</h3>
-
-<p class="offer-desc align-right" *ngIf="bestOffer$ | async" [ngSwitch]="(bestOffer$ | async).type">
-  <ng-container *ngSwitchCase="'percentage'">
-    Profitez d'une réduction de {{ (bestOffer$ | async).value }} % !
-  </ng-container>
-  <ng-container *ngSwitchCase="'minus'">
-    Profitez d'une réduction de {{ (bestOffer$ | async).value }} &euro; !
-  </ng-container>
-  <ng-container *ngSwitchCase="'slice'">
-    Profitez d'une réduction de {{ (bestOffer$ | async).value }} &euro; par tranche de {{ (bestOffer$ | async).sliceValue }} &euro; !
-  </ng-container>
-</p>
-
-<p class="checkout" *ngIf="booksCount$ | async">
-  <button (click)="checkout()">Régler maintenant !</button>
-</p>
+<app-books-cart-price *ngIf="booksCount$ | async"
+  [booksCount]="booksCount$ | async"
+  [fullPrice]="fullPrice$ | async"
+  [bestOffer]="bestOffer$ | async"
+  (onCheckout)="onCheckout($event)"></app-books-cart-price>
 
 <p class="cart-empty" *ngIf="!(booksCount$ | async)">Votre panier est vide.</p>

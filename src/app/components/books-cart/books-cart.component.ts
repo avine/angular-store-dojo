@@ -64,12 +64,10 @@ export class BooksCartComponent implements OnInit, OnDestroy {
     this.store.dispatch(new CartActions.EmptyCart());
   }
 
-  checkout() {
-    // FIXME: how to calculate this using this.bestOffer$ ??
-    /*const amount = this.bestOffer ? this.bestOffer.price : this.fullPrice;
+  onCheckout(amount: number) {
     window.alert(`
 Montant à régler : ${amount} €
 Veuillez patienter, vous allez être redirigé vers l'agence Xebia...`
-    );*/
+    );
   }
 }

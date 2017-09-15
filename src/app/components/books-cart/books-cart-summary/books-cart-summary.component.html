@@ -1,0 +1,16 @@
+<table class="items" *ngIf="books.length">
+  <tr class="items-desc">
+      <th class="item-title">Article</th>
+      <th>Prix unitaire</th>
+      <th>Quantité</th>
+      <th>Sous-total</th>
+      <th><button class="remove" *ngIf="books.length >= 2" (click)="empty()">Tout supprimer</button></th>
+    </tr>
+  <tr *ngFor="let item of books; let i = index">
+    <td class="item-title">{{ item.title }}</td>
+    <td>{{ item.price }} &euro;</td>
+    <td>x {{ item.units }}</td>
+    <td>{{ booksPrice[i] }} &euro;</td>
+    <td><button class="remove" (click)="delete(item)">Supprimer</button></td>
+  </tr>
+</table>
