@@ -5,6 +5,7 @@ import { NgModule } from '@angular/core';
 
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { reducers } from './store/reducers';
 import { BooksEffects } from './store/books/books.effects';
@@ -13,8 +14,8 @@ import { CartEffects } from './store/cart/cart.effects';
 import { BooksService } from './services/books.service';
 
 import { AppComponent } from './app.component';
-import { BooksBookComponent } from './components/books-book/books-book.component';
 import { BooksListComponent } from './components/books-list/books-list.component';
+import { BooksBookComponent } from './components/books-list/books-book/books-book.component';
 import { BooksCartComponent } from './components/books-cart/books-cart.component';
 import { BooksCartSummaryComponent } from './components/books-cart/books-cart-summary/books-cart-summary.component';
 import { BooksCartPriceComponent } from './components/books-cart/books-cart-price/books-cart-price.component';
@@ -44,7 +45,8 @@ const routes = [
     HttpModule,
     RouterModule.forRoot(routes),
     StoreModule.forRoot(reducers),
-    EffectsModule.forRoot([BooksEffects, CartEffects])
+    EffectsModule.forRoot([BooksEffects, CartEffects]),
+    StoreDevtoolsModule.instrument()
   ],
   providers: [BooksService],
   bootstrap: [AppComponent]

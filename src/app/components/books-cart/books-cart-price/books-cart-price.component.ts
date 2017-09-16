@@ -11,7 +11,8 @@ import { OfferModel } from '../../../models/offer.model';
 @Component({
   selector: 'app-books-cart-price',
   templateUrl: './books-cart-price.component.html',
-  styleUrls: ['./books-cart-price.component.css']
+  styleUrls: ['./books-cart-price.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BooksCartPriceComponent {
   @Input() booksCount: number;
