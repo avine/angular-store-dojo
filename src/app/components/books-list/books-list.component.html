@@ -1,4 +1,10 @@
-<section *ngFor="let book of books$ | async">
+<div class="filter-container">
+  <input type="checkbox" [(ngModel)]="fullSearch">
+  <input type="text" class="filter-input"
+    [(ngModel)]="filterTerm" [placeholder]="filterLabel[fullSearch ? 1 : 0]">
+</div>
+
+<section *ngFor="let book of books$ | async | booksFilter:filterTerm:fullSearch">
   <app-books-book
     [book]="book"
     [units]="(units$ | async)[book.isbn]"

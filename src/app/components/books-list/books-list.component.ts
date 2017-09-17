@@ -18,6 +18,12 @@ import { CartRules } from '../../rules/cart.rules';
 export class BooksListComponent implements OnInit {
   books$: Observable<BookModel[]>;
   units$: Observable<{}>;
+  filterTerm = '';
+  filterLabel = [
+    'Rechercher dans le titre',
+    'Rechercher dans le titre et le synopsis'
+  ];
+  fullSearch = false;
 
   constructor(private store: Store<fromRoot.State>) {
   }

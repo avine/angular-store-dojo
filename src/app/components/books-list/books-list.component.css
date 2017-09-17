@@ -1,0 +1,13 @@
+.filter-container {
+  text-align: right;
+}
+
+.filter-input {
+  width: 50%;
+  margin-bottom: var(--space-md);
+  box-sizing: border-box;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border-color);
+  padding: 0.5rem 1rem;
+  font: inherit;
+}

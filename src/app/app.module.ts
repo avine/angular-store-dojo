@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
@@ -22,6 +23,8 @@ import { BooksCartPriceComponent } from './components/books-cart/books-cart-pric
 import { BooksBasketComponent } from './components/books-basket/books-basket.component';
 import { AllInOneComponent } from './components/all-in-one/all-in-one.component';
 
+import { BooksFilterPipe } from './pipes/books-filter.pipe';
+
 const routes = [
   { path: 'list', component: BooksListComponent },
   { path: 'cart', component: BooksCartComponent },
@@ -38,10 +41,12 @@ const routes = [
     BooksCartSummaryComponent,
     BooksCartPriceComponent,
     BooksBasketComponent,
-    AllInOneComponent
+    AllInOneComponent,
+    BooksFilterPipe
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     HttpModule,
     RouterModule.forRoot(routes),
     StoreModule.forRoot(reducers),
