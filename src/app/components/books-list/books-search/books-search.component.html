@@ -1,0 +1,10 @@
+<div class="search-container">
+  <input type="checkbox"
+    #fullSearch
+    (change)="onChange(term.value, fullSearch.checked)">
+
+  <input type="text" class="search-input"
+    #term
+    [placeholder]="placeholder[fullSearch.checked ? 1 : 0]"
+    (input)="onChange(term.value, fullSearch.checked)">
+</div>

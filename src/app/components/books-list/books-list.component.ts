@@ -3,6 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import { Store } from '@ngrx/store';
 
 import { BookModel } from '../../models/book.model';
+import { SearchModel } from '../../models/search.model';
 
 import * as fromRoot from '../../store/reducers';
 import * as BooksActions from '../../store/books/books.actions';
@@ -18,12 +19,7 @@ import { CartRules } from '../../rules/cart.rules';
 export class BooksListComponent implements OnInit {
   books$: Observable<BookModel[]>;
   units$: Observable<{}>;
-  filterTerm = '';
-  filterLabel = [
-    'Rechercher dans le titre',
-    'Rechercher dans le titre et le synopsis'
-  ];
-  fullSearch = false;
+  search: SearchModel;
 
   constructor(private store: Store<fromRoot.State>) {
   }
@@ -38,5 +34,9 @@ export class BooksListComponent implements OnInit {
 
   onUnitsChanged(book: BookModel, units: string) {
     this.store.dispatch(new CartActions.SetBook(book, parseInt(units, 10)));
+  }
+
+  onSearch(search: SearchModel) {
+    this.search = search;
   }
 }

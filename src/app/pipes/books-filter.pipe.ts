@@ -8,9 +8,9 @@ import { BookModel } from '../models/book.model';
 })
 export class BooksFilterPipe implements PipeTransform {
 
-  transform(books: BookModel[], text: string, fullSearch = false): BookModel[] {
-    return !text ? books : books.filter(book =>
-      new RegExp(text, 'i').test(
+  transform(books: BookModel[], term: string, fullSearch = false): BookModel[] {
+    return !term ? books : books.filter(book =>
+      new RegExp(term, 'i').test(
         [book.title].concat(fullSearch ? book.synopsis : []).join(' ')
       )
     );

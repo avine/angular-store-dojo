@@ -16,6 +16,7 @@ import { BooksService } from './services/books.service';
 
 import { AppComponent } from './app.component';
 import { BooksListComponent } from './components/books-list/books-list.component';
+import { BooksSearchComponent } from './components/books-list/books-search/books-search.component';
 import { BooksBookComponent } from './components/books-list/books-book/books-book.component';
 import { BooksCartComponent } from './components/books-cart/books-cart.component';
 import { BooksCartSummaryComponent } from './components/books-cart/books-cart-summary/books-cart-summary.component';
@@ -35,8 +36,9 @@ const routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    BooksBookComponent,
     BooksListComponent,
+    BooksSearchComponent,
+    BooksBookComponent,
     BooksCartComponent,
     BooksCartSummaryComponent,
     BooksCartPriceComponent,
