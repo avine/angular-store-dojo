@@ -1,24 +1,28 @@
-.items {
+.summary {
   border-collapse: collapse;
   width: 100%;
 }
 
-.items tr {
+.summary tr {
   border-bottom: 1px solid #ddd;
 }
 
-.items th,
-.items td {
+.summary tbody tr:nth-child(2n + 2) {
+  background-color: #fafafa;
+}
+
+.summary th,
+.summary td {
   padding: 0.5rem;
   font-weight: normal;
   text-align: right;
 }
 
-.items th {
+.summary th {
   color: var(--color-alt);
 }
 
-.items .item-title {
+.summary .item-title {
   text-align: left;
 }
 
