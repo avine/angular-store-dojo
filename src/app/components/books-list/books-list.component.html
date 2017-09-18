@@ -1,4 +1,6 @@
-<app-books-search (onSearch)="onSearch($event)"></app-books-search>
+<p *ngIf="!(books$ | async)" class="loading">Chargement...</p>
+
+<app-books-search *ngIf="books$ | async" (onSearch)="onSearch($event)"></app-books-search>
 
 <section *ngFor="let book of books$ | async | booksFilter:search?.term:search?.fullSearch">
   <app-books-book
