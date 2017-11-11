@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 
 import { BookModel } from '../models/book.model';
@@ -8,19 +8,17 @@ import { OfferModel } from '../models/offer.model';
 
 @Injectable()
 export class BooksService {
-  constructor(private http: Http) {
+  constructor(private http: HttpClient) {
   }
 
   getBooks() {
-    return this.http.get(environment.booksUrl).map(
-      response => response.json() as BookModel[]
-    );
+    return this.http.get(environment.booksUrl) as Observable<BookModel[]>;
   }
 
-  getOffers(isbn: string[]) {
+  getOffers(isbn: string[]): Observable<OfferModel[]> {
     if (isbn && isbn.length) {
       return this.http.get(`${environment.booksUrl}/${isbn}/commercialOffers`).map(
-        response => response.json().offers as OfferModel[]
+        response => (response as any).offers
       );
     } else {
       return new Observable(observer => {
