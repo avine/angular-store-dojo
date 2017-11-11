@@ -1,15 +1,4 @@
-$space-lg: 2.5rem;
-$space-md: 1.5rem;
-$space-sm: 0.75rem;
-$color-def: #444;
-$color-alt: #aaa;
-$color-brand: dodgerblue;
-$color-secondary: coral;
-$color-alert: firebrick;
-$border-radius: 3px;
-$border-color: #ddd;
-$bg-color: #eee;
-$transition-duration: 0.25s;
+@import './main.scss';
 
 html {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
