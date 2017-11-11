@@ -11,7 +11,7 @@ import { BookModel } from '../../../models/book.model';
 @Component({
   selector: 'app-books-book',
   templateUrl: './books-book.component.html',
-  styleUrls: ['./books-book.component.css'],
+  styleUrls: ['./books-book.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BooksBookComponent {

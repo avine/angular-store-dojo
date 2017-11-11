@@ -11,7 +11,7 @@ import { SearchModel } from '../../../models/search.model';
 @Component({
   selector: 'app-books-search',
   templateUrl: './books-search.component.html',
-  styleUrls: ['./books-search.component.css'],
+  styleUrls: ['./books-search.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BooksSearchComponent {

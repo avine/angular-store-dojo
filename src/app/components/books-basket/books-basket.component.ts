@@ -7,7 +7,7 @@ import * as fromRoot from '../../store/reducers';
 @Component({
   selector: 'app-books-basket',
   templateUrl: './books-basket.component.html',
-  styleUrls: ['./books-basket.component.css']
+  styleUrls: ['./books-basket.component.scss']
 })
 export class BooksBasketComponent implements OnInit {
   total$: Observable<number>;

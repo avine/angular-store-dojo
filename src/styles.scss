@@ -1,0 +1,41 @@
+$space-lg: 2.5rem;
+$space-md: 1.5rem;
+$space-sm: 0.75rem;
+$color-def: #444;
+$color-alt: #aaa;
+$color-brand: dodgerblue;
+$color-secondary: coral;
+$color-alert: firebrick;
+$border-radius: 3px;
+$border-color: #ddd;
+$bg-color: #eee;
+$transition-duration: 0.25s;
+
+html {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 13px;
+  line-height: 1.5em;
+  color: $color-def;
+}
+
+body {
+  margin: 0;
+}
+
+a,
+a:link {
+  color: $color-brand;
+  text-decoration: none;
+}
+
+a:hover,
+a:active,
+a:focus {
+  text-decoration: underline;
+}
+
+hr {
+  margin: $space-lg 0;
+  border: 0 solid $color-brand;
+  border-top-width: 1px;
+}

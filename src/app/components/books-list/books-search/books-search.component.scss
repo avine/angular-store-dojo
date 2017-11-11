@@ -1,13 +1,15 @@
+@import "../../../../styles.scss";
+
 .search-container {
   text-align: right;
 }
 
 .search-input {
   width: 50%;
-  margin-bottom: var(--space-md);
+  margin-bottom: $space-md;
   box-sizing: border-box;
-  border-radius: var(--border-radius);
-  border: 1px solid var(--border-color);
+  border-radius: $border-radius;
+  border: 1px solid $border-color;
   padding: 0.5rem 1rem;
   font: inherit;
 }

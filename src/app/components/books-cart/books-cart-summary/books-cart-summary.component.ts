@@ -11,7 +11,7 @@ import { BookModel } from '../../../models/book.model';
 @Component({
   selector: 'app-books-cart-summary',
   templateUrl: './books-cart-summary.component.html',
-  styleUrls: ['./books-cart-summary.component.css'],
+  styleUrls: ['./books-cart-summary.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BooksCartSummaryComponent {

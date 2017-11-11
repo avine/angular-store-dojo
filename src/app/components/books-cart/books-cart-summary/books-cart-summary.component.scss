@@ -1,3 +1,5 @@
+@import "../../../../styles.scss";
+
 .summary {
   border-collapse: collapse;
   width: 100%;
@@ -19,7 +21,7 @@
 }
 
 .summary th {
-  color: var(--color-alt);
+  color: $color-alt;
 }
 
 .summary .item-title {
@@ -28,8 +30,8 @@
 
 .remove {
   padding: 0.25rem 0.5rem;
-  border-radius: var(--border-radius);
+  border-radius: $border-radius;
   border: none;
   background-color: #eee;
-  color: var(--color-alt);
+  color: $color-alt;
 }

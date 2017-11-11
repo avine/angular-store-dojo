@@ -1,10 +1,11 @@
+@import "../../../../styles.scss";
 
 .align-right {
   text-align: right;
 }
 
 .price-dashed {
-  color: var(--color-alt);
+  color: $color-alt;
   font-weight: normal;
   text-decoration: line-through;
 }
@@ -14,15 +15,15 @@
 }
 
 .checkout {
-  margin-top: var(--space-lg);
+  margin-top: $space-lg;
   text-align: center;
 }
 
 .checkout button {
   padding: 1rem 2rem;
-  border-radius: var(--border-radius);
+  border-radius: $border-radius;
   border: none;
-  background-color: var(--color-secondary);
+  background-color: $color-secondary;
   color: white;
   font-size: 1.5rem;
 }

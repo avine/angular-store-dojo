@@ -14,7 +14,7 @@ import { CartRules } from '../../rules/cart.rules';
 @Component({
   selector: 'app-books-list',
   templateUrl: './books-list.component.html',
-  styleUrls: ['./books-list.component.css']
+  styleUrls: ['./books-list.component.scss']
 })
 export class BooksListComponent implements OnInit {
   books$: Observable<BookModel[]>;

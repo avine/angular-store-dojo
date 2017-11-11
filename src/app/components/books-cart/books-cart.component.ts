@@ -15,7 +15,7 @@ import * as fromRoot from '../../store/reducers';
 @Component({
   selector: 'app-books-cart',
   templateUrl: './books-cart.component.html',
-  styleUrls: ['./books-cart.component.css']
+  styleUrls: ['./books-cart.component.scss']
 })
 export class BooksCartComponent implements OnInit, OnDestroy {
   books$: Observable<BookModel[]>;

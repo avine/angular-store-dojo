@@ -1,8 +1,10 @@
+@import "../../../../styles.scss";
+
 .container {
   display: flex;
-  padding-bottom: var(--space-md);
-  margin-bottom: var(--space-md);
-  border-bottom: 1px solid var(--border-color);
+  padding-bottom: $space-md;
+  margin-bottom: $space-md;
+  border-bottom: 1px solid $border-color;
 }
 
 .description {
@@ -11,21 +13,21 @@
 
 .action {
   flex-grow: 0;
-  margin-left: var(--space-md);
+  margin-left: $space-md;
 }
 
 .action-inner {
-  padding: var(--space-md) var(--space-lg);
-  border-radius: var(--border-radius);
-  background-color: var(--bg-color);
+  padding: $space-md $space-lg;
+  border-radius: $border-radius;
+  background-color: $bg-color;
   text-align: center;
 }
 
 .cover {
   float: left;
   height: 8.5rem;
-  margin: 0 var(--space-md) var(--space-md) 0;
-  border-radius: var(--border-radius);
+  margin: 0 $space-md $space-md 0;
+  border-radius: $border-radius;
 }
 
 .title {
@@ -44,15 +46,15 @@
   width: 4rem;
   margin: 0.5rem 0 0.25rem 0;
   padding: 0.5rem 0;
-  border-radius: var(--border-radius);
-  border: 1px solid var(--color-brand);
-  color: var(--color-brand);
+  border-radius: $border-radius;
+  border: 1px solid $color-brand;
+  color: $color-brand;
   font-size: 1.25rem;
   text-align: center;
 }
 
 .units-type {
-  color: var(--color-alt);
+  color: $color-alt;
 }
 
 @media (max-width: 640px) {
