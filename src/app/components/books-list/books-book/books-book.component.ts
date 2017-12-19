@@ -20,7 +20,7 @@ export class BooksBookComponent {
   @Output() onUnitsChanged = new EventEmitter<number>();
   readMore = false;
 
-  onChange(units: number) {
-    this.onUnitsChanged.emit(units);
+  onChange(units: string) {
+    this.onUnitsChanged.emit(parseInt(units, 10));
   }
 }
