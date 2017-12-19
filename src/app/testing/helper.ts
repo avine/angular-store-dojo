@@ -1,3 +1,4 @@
+import { DebugElement } from '@angular/core';
 import { ComponentFixture } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
@@ -24,6 +25,22 @@ export class Fixture<T> {
 
   queryAllByDirective(directive) {
     return this.fixture.debugElement.queryAll(By.directive(directive));
+  }
+}
+
+export class Trigger {
+  static click(de: DebugElement) {
+    de.triggerEventHandler('click', null);
+  }
+
+  static inputText(de: DebugElement, value: string) {
+    (de.nativeElement as HTMLInputElement).value = value;
+    de.triggerEventHandler('input', null);
+  }
+
+  static checkboxChange(de: DebugElement, checked: boolean) {
+    (de.nativeElement as HTMLInputElement).checked = checked;
+    de.triggerEventHandler('change', null);
   }
 }
 

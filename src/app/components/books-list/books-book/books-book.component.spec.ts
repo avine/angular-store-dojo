@@ -59,7 +59,7 @@ describe('BooksBookComponent', () => {
     f.fixture.detectChanges();
     expect(f.queryAllByCss('[test-synopsis]').length).toEqual(1);
 
-    f.queryByCss('.more').triggerEventHandler('click', null);
+    helper.Trigger.click(f.queryByCss('.more'));
     f.fixture.detectChanges();
 
     expect(f.queryAllByCss('[test-synopsis]').length).toEqual(2);
@@ -68,9 +68,7 @@ describe('BooksBookComponent', () => {
   it('should change the number of units', () => {
     const onChange = spyOn(f.component, 'onChange');
 
-    const input = f.queryByCss('.units-input');
-    (input.nativeElement as HTMLInputElement).value = '2';
-    input.triggerEventHandler('input', null);
+    helper.Trigger.inputText(f.queryByCss('.units-input'), '2');
     f.fixture.detectChanges();
 
     expect(onChange).toHaveBeenCalledWith(2);
