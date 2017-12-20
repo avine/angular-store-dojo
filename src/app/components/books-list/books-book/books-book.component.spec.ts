@@ -21,6 +21,8 @@ class HostComponent {
   }
 }
 
+const t = helper.Trigger;
+
 describe('BooksBookComponent', () => {
   let f: helper.Fixture<HostComponent>;
 
@@ -59,7 +61,7 @@ describe('BooksBookComponent', () => {
     f.fixture.detectChanges();
     expect(f.queryAllByCss('[test-synopsis]').length).toEqual(1);
 
-    helper.Trigger.click(f.queryByCss('.more'));
+    t.click(f.queryByCss('.more'));
     f.fixture.detectChanges();
 
     expect(f.queryAllByCss('[test-synopsis]').length).toEqual(2);
@@ -68,7 +70,7 @@ describe('BooksBookComponent', () => {
   it('should change the number of units', () => {
     const onChange = spyOn(f.component, 'onChange');
 
-    helper.Trigger.inputText(f.queryByCss('.units-input'), '2');
+    t.inputText(f.queryByCss('.units-input'), '2');
     f.fixture.detectChanges();
 
     expect(onChange).toHaveBeenCalledWith(2);

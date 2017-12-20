@@ -15,6 +15,8 @@ class HostComponent {
   }
 }
 
+const t = helper.Trigger;
+
 describe('BooksSearchComponent', () => {
   let f: helper.Fixture<HostComponent>;
 
@@ -30,7 +32,7 @@ describe('BooksSearchComponent', () => {
   it('should switch to fullSearch', () => {
     const onSearch = spyOn(f.component, 'onSearch');
 
-    helper.Trigger.checkboxChange(f.queryByCss('[test-checkbox]'), true);
+    t.checkboxChange(f.queryByCss('[test-checkbox]'), true);
     f.fixture.detectChanges();
 
     expect(onSearch).toHaveBeenCalledWith({ term: '', fullSearch: true } as SearchModel);
@@ -39,7 +41,7 @@ describe('BooksSearchComponent', () => {
   it('should change the search term', () => {
     const onSearch = spyOn(f.component, 'onSearch');
 
-    helper.Trigger.inputText(f.queryByCss('.search-input'), 'hello');
+    t.inputText(f.queryByCss('.search-input'), 'hello');
     f.fixture.detectChanges();
 
     expect(onSearch).toHaveBeenCalledWith({ term: 'hello', fullSearch: false } as SearchModel);
