@@ -6,7 +6,7 @@ import {
   ChangeDetectionStrategy
 } from '@angular/core';
 
-import { SearchModel } from '../../../models/search.model';
+import { SearchModel } from '../../models/search.model';
 
 @Component({
   selector: 'app-books-search',

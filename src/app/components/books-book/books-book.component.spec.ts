@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { async, TestBed } from '@angular/core/testing';
 
-import * as helper from '../../../testing/helper';
+import * as helper from '../../testing/helper';
 import { BooksBookComponent } from './books-book.component';
 
 @Component({

@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { async, TestBed } from '@angular/core/testing';
 
-import * as helper from '../../../testing/helper';
+import * as helper from '../../testing/helper';
 import { BooksSearchComponent } from './books-search.component';
-import { SearchModel } from '../../../models/search.model';
+import { SearchModel } from '../../models/search.model';
 
 @Component({
   template: `

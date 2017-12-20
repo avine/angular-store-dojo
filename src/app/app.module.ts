@@ -15,14 +15,14 @@ import { CartEffects } from './store/cart/cart.effects';
 import { BooksService } from './services/books.service';
 
 import { AppComponent } from './app.component';
-import { BooksListComponent } from './components/books-list/books-list.component';
-import { BooksSearchComponent } from './components/books-list/books-search/books-search.component';
-import { BooksBookComponent } from './components/books-list/books-book/books-book.component';
-import { BooksCartComponent } from './components/books-cart/books-cart.component';
-import { BooksCartSummaryComponent } from './components/books-cart/books-cart-summary/books-cart-summary.component';
-import { BooksCartPriceComponent } from './components/books-cart/books-cart-price/books-cart-price.component';
-import { BooksBasketComponent } from './components/books-basket/books-basket.component';
-import { AllInOneComponent } from './components/all-in-one/all-in-one.component';
+import { BooksListComponent } from './containers/books-list/books-list.component';
+import { BooksCartComponent } from './containers/books-cart/books-cart.component';
+import { BooksBasketComponent } from './containers/books-basket/books-basket.component';
+import { AllInOneComponent } from './containers/all-in-one/all-in-one.component';
+import { BooksSearchComponent } from './components/books-search/books-search.component';
+import { BooksBookComponent } from './components/books-book/books-book.component';
+import { BooksCartSummaryComponent } from './components/books-cart-summary/books-cart-summary.component';
+import { BooksCartPriceComponent } from './components/books-cart-price/books-cart-price.component';
 
 import { BooksFilterPipe } from './pipes/books-filter.pipe';
 
@@ -37,13 +37,13 @@ const routes = [
   declarations: [
     AppComponent,
     BooksListComponent,
-    BooksSearchComponent,
-    BooksBookComponent,
     BooksCartComponent,
-    BooksCartSummaryComponent,
-    BooksCartPriceComponent,
     BooksBasketComponent,
     AllInOneComponent,
+    BooksSearchComponent,
+    BooksBookComponent,
+    BooksCartSummaryComponent,
+    BooksCartPriceComponent,
     BooksFilterPipe
   ],
   imports: [
