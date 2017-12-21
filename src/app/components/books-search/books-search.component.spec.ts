@@ -32,7 +32,7 @@ describe('BooksSearchComponent', () => {
   it('should switch to fullSearch', () => {
     const onSearch = spyOn(f.component, 'onSearch');
 
-    t.checkboxChange(f.queryByCss('[test-checkbox]'), true);
+    t.changeCheckbox(f.queryByCss('[test-checkbox]'), true);
     f.fixture.detectChanges();
 
     expect(onSearch).toHaveBeenCalledWith({ term: '', fullSearch: true } as SearchModel);

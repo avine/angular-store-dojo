@@ -31,7 +31,7 @@ export class Trigger {
     (de.nativeElement as HTMLInputElement).value = value;
     de.triggerEventHandler('input', null);
   }
-  static checkboxChange(de: DebugElement, checked: boolean) {
+  static changeCheckbox(de: DebugElement, checked: boolean) {
     (de.nativeElement as HTMLInputElement).checked = checked;
     de.triggerEventHandler('change', null);
   }
