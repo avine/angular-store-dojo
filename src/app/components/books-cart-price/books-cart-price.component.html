@@ -1,4 +1,4 @@
-<h3 class="align-right" *ngIf="fullPrice">
+<h3 test-fullprice class="align-right" *ngIf="fullPrice">
   Prix total :
   <strong class="bestPrice" *ngIf="bestOffer">{{ bestOffer.price }} &euro;</strong>
   <strong [ngClass]="{ 'price-dashed': bestOffer }">{{ fullPrice }} &euro;</strong>
