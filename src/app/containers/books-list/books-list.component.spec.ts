@@ -46,8 +46,13 @@ describe('BooksListComponent', () => {
     // Helper to find how many books are displayed in the UI.
     // This helper also return the list of DebugElement founded.
     expectBooksLengthToBe = function (length: number) {
+      // Detect changes
+      f.fixture.detectChanges();
+      // Find books
       const books = f.queryAllByDirective(BooksBookComponent);
+      // Expect length
       expect(books.length).toBe(length);
+      // Return books
       return books;
     };
   });
@@ -59,17 +64,14 @@ describe('BooksListComponent', () => {
   it('filter books by title and synopsis', () => {
     // Filter books by title only
     helper.Trigger.inputText(f.queryByCss('.search-input'), 'ab');
-    f.fixture.detectChanges();
     expectBooksLengthToBe(1);
 
     // Filter by synopsis also, but checkbox NOT checked!
     helper.Trigger.inputText(f.queryByCss('.search-input'), 'cd');
-    f.fixture.detectChanges();
     expectBooksLengthToBe(0);
 
     // Filter by synopsis also, with checkbox checked!
     helper.Trigger.changeCheckbox(f.queryByCss('[test-checkbox]'), true);
-    f.fixture.detectChanges();
     expectBooksLengthToBe(1);
   });
 });
