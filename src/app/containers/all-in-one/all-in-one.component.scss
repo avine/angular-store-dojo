@@ -1,9 +1,7 @@
 @import "../../../main.scss";
 
-.alert {
-  margin: $space-lg 0;
-  padding: $space-sm $space-md;
+.basket {
   border-radius: $border-radius;
-  border: 1px solid $color-alert;
-  color: $color-alert;
+  border: 1px solid $color-brand;
+  padding: $space-md;
 }
