@@ -1,3 +1,5 @@
+import 'rxjs/add/observable/empty';
+
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
@@ -21,10 +23,7 @@ export class BooksService {
         response => (response as any).offers
       );
     } else {
-      return new Observable(observer => {
-        observer.next([]);
-        observer.complete();
-      });
+      return Observable.empty();
     }
   }
 }
