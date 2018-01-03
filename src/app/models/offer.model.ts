@@ -1,6 +1,8 @@
 export interface OfferModel {
-  type: string;
+  type: OfferType;
   value: number;
   sliceValue?: number;
   price?: number;
 }
+
+export type OfferType = 'percentage' | 'minus' | 'slice';
