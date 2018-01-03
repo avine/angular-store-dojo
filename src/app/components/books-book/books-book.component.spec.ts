@@ -35,28 +35,28 @@ describe('BooksBookComponent', () => {
     f.fixture.detectChanges();
   });
 
-  it('should set title', () => {
+  it('show title', () => {
     const title: HTMLElement = f.queryByCss('.title').nativeElement;
     expect(title.innerText).toContain(f.component.book.title);
   });
 
-  it('should set synopsis', () => {
+  it('show synopsis', () => {
     const synopsis: HTMLElement = f.queryByCss('[test-synopsis]').nativeElement;
     expect(synopsis.innerText).toContain(f.component.book.synopsis[0]);
   });
 
-  it('should NOT have "read more" button when synopsis length equal to 0 or 1', () => {
+  it('don\'t show "read more" button when synopsis length equal to 0 or 1', () => {
     expect(f.queryByCss('.more')).toBeNull();
   });
 
-  it('should have a "read more" button when there\'s at least 2 synopsis', () => {
+  it('show "read more" button when there\'s at least 2 synopsis', () => {
     f.component.book = helper.getBook({ synopsis: ['synopsis1', 'synopsis2'] });
     f.fixture.detectChanges();
 
     expect(f.queryByCss('.more')).not.toBeNull();
   });
 
-  it('should reveal more synopsis when clicking on "read more" button', () => {
+  it('reveal more synopsis when clicking on "read more" button', () => {
     f.component.book = helper.getBook({ synopsis: ['synopsis1', 'synopsis2'] });
     f.fixture.detectChanges();
     expect(f.queryAllByCss('[test-synopsis]').length).toEqual(1);
@@ -67,7 +67,7 @@ describe('BooksBookComponent', () => {
     expect(f.queryAllByCss('[test-synopsis]').length).toEqual(2);
   });
 
-  it('should change the number of units', () => {
+  it('change the number of units', () => {
     const onChange = spyOn(f.component, 'onChange');
 
     t.inputText(f.queryByCss('.units-input'), '2');

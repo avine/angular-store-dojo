@@ -29,7 +29,7 @@ describe('BooksSearchComponent', () => {
     f.fixture.detectChanges();
   });
 
-  it('should switch to fullSearch', () => {
+  it('switch to fullSearch', () => {
     const onSearch = spyOn(f.component, 'onSearch');
 
     t.changeCheckbox(f.queryByCss('[test-checkbox]'), true);
@@ -38,7 +38,7 @@ describe('BooksSearchComponent', () => {
     expect(onSearch).toHaveBeenCalledWith({ term: '', fullSearch: true } as SearchModel);
   });
 
-  it('should change the search term', () => {
+  it('change search term', () => {
     const onSearch = spyOn(f.component, 'onSearch');
 
     t.inputText(f.queryByCss('.search-input'), 'hello');

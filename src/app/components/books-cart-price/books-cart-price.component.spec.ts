@@ -38,7 +38,7 @@ describe('BooksCartPriceComponent', () => {
     f.fixture.detectChanges();
   });
 
-  it('should have only full price when no best offer available', () => {
+  it('show only full price when no best offer available', () => {
     f.component.fullPrice = 100;
     f.fixture.detectChanges();
 
@@ -49,7 +49,7 @@ describe('BooksCartPriceComponent', () => {
     expect(fullprice.textContent).toContain('100');
   });
 
-  it('should have full price dashed and best price when best price available', () => {
+  it('show dashed full price and best price when best price available', () => {
     f.component.fullPrice = 100;
     f.component.bestOffer = { type: 'percentage', value: 10, price: 90 };
     f.fixture.detectChanges();
@@ -61,10 +61,30 @@ describe('BooksCartPriceComponent', () => {
     expect(fullprice.textContent).toContain('100');
   });
 
-  // TODO: test "offer-desc"
-  // ...
+  it('show offer description', () => {
+    f.component.fullPrice = 100;
 
-  it('should have checkout button when books count available', () => {
+    // Percentage
+    f.component.bestOffer = { type: 'percentage', value: 10, price: 90 };
+    f.fixture.detectChanges();
+    let offerDesc: HTMLElement = f.queryByCss('.offer-desc').nativeElement;
+    expect(offerDesc.textContent).toContain('10 %');
+
+    // Minus
+    f.component.bestOffer = { type: 'minus', value: 10, price: 90 };
+    f.fixture.detectChanges();
+    offerDesc = f.queryByCss('.offer-desc').nativeElement;
+    expect(offerDesc.textContent).toContain('10 €');
+
+    // Slice
+    f.component.bestOffer = { type: 'slice', value: 10, sliceValue: 50, price: 80 };
+    f.fixture.detectChanges();
+    offerDesc = f.queryByCss('.offer-desc').nativeElement;
+    expect(offerDesc.textContent).toContain('10 €');
+    expect(offerDesc.textContent).toContain('50 €');
+  });
+
+  it('show checkout button when books count available', () => {
     expect(f.queryByCss('.checkout')).toBeNull();
 
     f.component.booksCount = 1;

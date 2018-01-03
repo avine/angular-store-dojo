@@ -11,9 +11,9 @@
   <tbody>
     <tr *ngFor="let item of books; let i = index">
       <td class="item-title">{{ item.title }}</td>
-      <td>{{ item.price }} &euro;</td>
+      <td>{{ item.price }} €</td>
       <td>x {{ item.units }}</td>
-      <td>{{ booksPrice[i] }} &euro;</td>
+      <td>{{ booksPrice[i] }} €</td>
       <td><button class="remove" (click)="delete(item)">Supprimer</button></td>
     </tr>
   </tbody>

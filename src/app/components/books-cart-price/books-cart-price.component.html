@@ -1,7 +1,7 @@
 <h3 test-fullprice class="align-right" *ngIf="fullPrice">
   Prix total :
-  <strong class="bestPrice" *ngIf="bestOffer">{{ bestOffer.price }} &euro;</strong>
-  <strong [ngClass]="{ 'price-dashed': bestOffer }">{{ fullPrice }} &euro;</strong>
+  <strong class="bestPrice" *ngIf="bestOffer">{{ bestOffer.price }} €</strong>
+  <strong [ngClass]="{ 'price-dashed': bestOffer }">{{ fullPrice }} €</strong>
 </h3>
 
 <p class="offer-desc align-right" *ngIf="bestOffer" [ngSwitch]="bestOffer.type">
@@ -9,10 +9,10 @@
     Profitez d'une réduction de {{ bestOffer.value }} % !
   </ng-container>
   <ng-container *ngSwitchCase="'minus'">
-    Profitez d'une réduction de {{ bestOffer.value }} &euro; !
+    Profitez d'une réduction de {{ bestOffer.value }} € !
   </ng-container>
   <ng-container *ngSwitchCase="'slice'">
-    Profitez d'une réduction de {{ bestOffer.value }} &euro; par tranche de {{ bestOffer.sliceValue }} &euro; !
+    Profitez d'une réduction de {{ bestOffer.value }} € par tranche de {{ bestOffer.sliceValue }} € !
   </ng-container>
 </p>
 
