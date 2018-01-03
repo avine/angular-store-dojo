@@ -3,6 +3,7 @@ import { ComponentFixture } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
 import { BookModel } from '../models/book.model';
+import { OfferModel, OfferType } from '../models/offer.model';
 
 export class Fixture<T> {
   component: T;
@@ -20,6 +21,9 @@ export class Fixture<T> {
   }
   queryAllByDirective(directive) {
     return this.fixture.debugElement.queryAll(By.directive(directive));
+  }
+  getDependency(token) {
+    return this.fixture.debugElement.injector.get(token);
   }
 }
 
@@ -46,11 +50,24 @@ export interface BookParamModel {
   units?: number;
 }
 
-export const getBook = (book?: BookParamModel): BookModel =>
+export interface OfferParamModel {
+  type?: OfferType;
+  value?: number;
+  sliceValue?: number;
+  price?: number;
+}
+
+export const getBook = (book: BookParamModel = {}): BookModel =>
   Object.assign({
     isbn: '12345',
     price: 10,
     title: 'title',
     cover: 'cover.png',
     synopsis: ['synopsis']
-  }, book ? book : {});
+  } as BookModel, book);
+
+export const getOffer = (offer: OfferParamModel = {}): OfferModel =>
+  Object.assign({
+    type: 'percentage',
+    value: 10
+  } as OfferModel, offer);
