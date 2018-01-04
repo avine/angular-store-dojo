@@ -15,8 +15,8 @@ import { BooksFilterPipe } from '../../pipes/books-filter.pipe';
 const t = helper.Trigger;
 
 describe('BooksListComponent', () => {
-  let store: Store<fromRoot.State>;
   let f: helper.Fixture<BooksListComponent>;
+  let store: Store<fromRoot.State>;
   let expectBooksLengthToBe: (length: number) => DebugElement[];
 
   beforeEach(() => {
