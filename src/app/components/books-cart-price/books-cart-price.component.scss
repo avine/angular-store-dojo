@@ -11,6 +11,11 @@
 }
 
 .offer-desc {
+  // Always display this element even if empty!
+  // Each time we add/remove books, the current offers are removed from the store for data consistency.
+  // If this element is removed as well then the checkout button will move up/down in the page all the time...
+  min-height: 1.5em;
+  line-height: 1.5em;
   color: dodgerblue;
 }
 

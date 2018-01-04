@@ -19,11 +19,11 @@ export function reducer(state: State = initialState, action: CartActions.All): S
     case CartActions.SET_BOOK: {
       const cart = new CartRules(state.books);
       cart.addBook(action.payload.book, action.payload.units);
-      return { ...state, books: [...cart.books] };
+      return { ...state, books: [...cart.books], offers: [] };
     }
 
     case CartActions.EMPTY_CART: {
-      return { ...state, books: [] };
+      return { ...state, books: [], offers: [] };
     }
 
     case CartActions.GET_OFFERS_SUCCESS: {

@@ -65,9 +65,7 @@ export class BooksCartComponent implements OnInit, OnDestroy {
   }
 
   onCheckout(amount: number) {
-    window.alert(`
-Montant à régler : ${amount} €
-Veuillez patienter, vous allez être redirigé vers l'agence Xebia...`
+    window.alert(`Montant à régler : ${amount} €`
     );
   }
 }

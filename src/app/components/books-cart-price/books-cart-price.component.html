@@ -4,7 +4,7 @@
   <strong [ngClass]="{ 'price-dashed': bestOffer }">{{ fullPrice }} €</strong>
 </h3>
 
-<p class="offer-desc align-right" *ngIf="bestOffer" [ngSwitch]="bestOffer.type">
+<p class="offer-desc align-right" [ngSwitch]="bestOffer?.type">
   <ng-container *ngSwitchCase="'percentage'">
     Profitez d'une réduction de {{ bestOffer.value }} % !
   </ng-container>
