@@ -1,6 +1,9 @@
+// import 'rxjs/add/operator/map';
+
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/combineLatest';
+import { Observable } from 'rxjs/observable';
+import { combineLatest } from 'rxjs/observable/combineLatest';
+import { map, switchMap } from 'rxjs/operators';
 import { Subscription } from 'rxjs/Subscription';
 import { Store } from '@ngrx/store';
 
@@ -32,19 +35,19 @@ export class BooksCartComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.books$ = this.store.select(fromRoot.getCartBooks);
-    this.booksCount$ = this.books$.map(books => books.length);
-    this.booksPrice$ = this.books$.map(books => new CartRules(books).getBooksPrice());
-    this.fullPrice$ = this.books$.map(books => new CartRules(books).getFullPrice());
+    this.booksCount$ = this.books$.pipe(map(books => books.length));
+    this.booksPrice$ = this.books$.pipe(map(books => new CartRules(books).getBooksPrice()));
+    this.fullPrice$ = this.books$.pipe(map(books => new CartRules(books).getFullPrice()));
 
-    this.offers$ = this.books$.switchMap(
-      books => this.store.select(fromRoot.getCartOffers).map(
-        offers => new CartRules(books).getDiscountPrices(offers)
-      )
+    this.offers$ = this.books$.pipe(
+      switchMap(books => this.store.select(fromRoot.getCartOffers).pipe(
+        map(offers => new CartRules(books).getDiscountPrices(offers))
+      ))
     );
-    this.bestOffer$ = this.offers$.map(offers => offers[0]);
+    this.bestOffer$ = this.offers$.pipe(map(offers => offers[0]));
 
-    this.amount$ = Observable.combineLatest(this.fullPrice$, this.bestOffer$).map(
-      value => value[1] ? value[1].price : value[0]
+    this.amount$ = combineLatest(this.fullPrice$, this.bestOffer$).pipe(
+      map(value => value[1] ? value[1].price : value[0])
     );
 
     this.subscriptions.push(this.books$.subscribe(

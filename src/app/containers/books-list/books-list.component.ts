@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs/observable';
+import { map } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 
 import { BookModel } from '../../models/book.model';
@@ -27,8 +28,8 @@ export class BooksListComponent implements OnInit {
   ngOnInit() {
     this.store.dispatch(new BooksActions.GetBooks());
     this.books$ = this.store.select(fromRoot.getBooks);
-    this.units$ = this.store.select(fromRoot.getCartBooks).map(
-      books => new CartRules(books).getUnitsPerIsbn()
+    this.units$ = this.store.select(fromRoot.getCartBooks).pipe(
+      map(books => new CartRules(books).getUnitsPerIsbn())
     );
   }
 

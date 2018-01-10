@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs/observable';
+import { map } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 
 import * as fromRoot from '../../store/reducers';
@@ -16,8 +17,8 @@ export class BooksBasketComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.total$ = this.store.select(fromRoot.getCartBooks).map(
-      books => books.reduce((total, book) => total + book.units, 0)
+    this.total$ = this.store.select(fromRoot.getCartBooks).pipe(
+      map(books => books.reduce((total, book) => total + book.units, 0))
     );
   }
 }

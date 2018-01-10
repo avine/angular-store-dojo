@@ -5,10 +5,6 @@ import { By } from '@angular/platform-browser';
 import { BookModel } from '../models/book.model';
 import { OfferModel, OfferType } from '../models/offer.model';
 
-// This import is needed to run `npm test` successfully.
-import 'rxjs/add/operator/map';
-// import { map } from 'rxjs/operator/map'; // TODO: replace with this syntax for all occurences
-
 export class Fixture<T> {
   component: T;
   constructor(public fixture: ComponentFixture<T>) {
