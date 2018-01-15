@@ -1,13 +1,19 @@
-<app-books-cart-summary *ngIf="booksCount$ | async"
-  [books]="books$ | async"
-  [booksPrice]="booksPrice$ | async"
-  (onDelete)="onDelete($event)"
-  (onEmpty)="onEmpty()"></app-books-cart-summary>
+<ng-container *ngIf="booksCount$ | async; let booksCount else empty">
+  <app-books-cart-summary *ngIf="booksCount"
+    [books]="books$ | async"
+    [booksPrice]="booksPrice$ | async"
+    (onDelete)="onDelete($event)"
+    (onEmpty)="onEmpty()">
+  </app-books-cart-summary>
 
-<app-books-cart-price *ngIf="booksCount$ | async"
-  [booksCount]="booksCount$ | async"
-  [fullPrice]="fullPrice$ | async"
-  [bestOffer]="bestOffer$ | async"
-  (onCheckout)="onCheckout($event)"></app-books-cart-price>
+  <app-books-cart-price *ngIf="booksCount"
+    [booksCount]="booksCount"
+    [fullPrice]="fullPrice$ | async"
+    [bestOffer]="bestOffer$ | async"
+    (onCheckout)="onCheckout($event)">
+  </app-books-cart-price>
+</ng-container>
 
-<p class="cart-empty" *ngIf="!(booksCount$ | async)">Votre panier est vide.</p>
+<ng-template #empty>
+  <p class="cart-empty">Votre panier est vide.</p>
+</ng-template>
