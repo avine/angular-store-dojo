@@ -1,6 +1,7 @@
 @import "../../../main.scss";
 
 .basket {
+  overflow: hidden;
   border-radius: $border-radius;
   border: 1px solid $color-brand;
   padding: $space-md;

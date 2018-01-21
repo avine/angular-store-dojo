@@ -1,6 +1,6 @@
 <div class="container">
   <span *ngIf="total$ | async; let total else empty">
-    Vous avez <strong>{{ total }}</strong> articles dans votre panier.
+    Vous avez <strong class="total">{{ total }}</strong> articles dans votre panier.
   </span>
 
   <ng-template #empty>
