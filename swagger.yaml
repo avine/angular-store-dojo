@@ -1,126 +1,131 @@
-swagger: "2.0"
-
+swagger: '2.0'
 info:
-  version: "1.0.0"
-  title: "Henri Potier"
-  description: "Henri Potier Api"
+  version: 1.0.0
+  title: Henri Potier
+  description: 'Henri Potier Api '
   contact:
-    email: "contact@avine.io"
+    email: contact@avine.io
   license:
-    name: "Apache 2.0"
-    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
-
-host: "henri-potier.xebia.fr"
-
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+host: henri-potier.xebia.fr
 tags:
-- name: "books"
-  description: "Available books"
-- name: "offers"
-  description: "Available offers"
-
+  - name: books
+    description: Available books
+  - name: offers
+    description: Available offers
 schemes:
-- "http"
-
+  - http
 paths:
-
   /books:
     get:
       tags:
-      - "books"
-      summary: "Get books"
-      description: "Retrieve books"
+        - books
+      summary: Get books
+      description: Retrieve books
       produces:
-      - "application/json"
+        - application/json
       responses:
-        200:
-          description: "List of books"
+        '200':
+          description: List of books
           schema:
-            type: "array"
+            type: array
             items:
-              $ref: "#/definitions/Book"
-
-  /books/{isbnList}/commercialOffers:
+              $ref: '#/definitions/Book'
+  '/books/{isbnList}/commercialOffers':
     get:
       tags:
-      - "offers"
-      summary: "Get offers"
-      description: "Retrieve offers"
+        - offers
+      summary: Get offers
+      description: Retrieve offers
       parameters:
-      - in: "path"
-        name: "isbnList"
-        description: "List of isbn"
-        required: true
-        type: "string"
+        - in: path
+          name: isbnList
+          description: List of isbn
+          required: true
+          type: string
       produces:
-      - "application/json"
+        - application/json
       responses:
-        200:
-          description: "List of offers"
+        '200':
+          description: List of offers
           schema:
-            type: "object"
+            type: object
             properties:
               offers:
-                type: "array"
+                type: array
                 items:
-                  $ref: "#/definitions/Offer"
-
+                  $ref: '#/definitions/Offer'
 definitions:
-
   Book:
-    type: "object"
+    type: object
     properties:
       isbn:
-        type: "string"
+        type: string
       price:
-        type: "integer"
-        format: "int32"
+        type: integer
+        format: int32
       cover:
-        type: "string"
+        type: string
       title:
-        type: "string"
+        type: string
       synopsis:
-        type: "string"
-    example: {
-      "isbn": "c8fabf68-8374-48fe-a7ea-a00ccd07afff",
-      "title": "Henri Potier à l'école des sorciers",
-      "price": 35,
-      "cover": "http://henri-potier.xebia.fr/hp0.jpg",
-      "synopsis": [
-        "Après la mort de ses parents (Lily et James Potier), Henri est recueilli par sa tante Pétunia (la sœur de Lily) et son oncle Vernon à l'âge d'un an. Ces derniers, animés depuis toujours d'une haine féroce envers les parents du garçon qu'ils qualifient de gens « bizarres », voire de « monstres », traitent froidement leur neveu et demeurent indifférents aux humiliations que leur fils Dudley lui fait subir. Henri ignore tout de l'histoire de ses parents, si ce n'est qu'ils ont été tués dans un accident de voiture",
-        "Le jour des 11 ans de Henri, un demi-géant du nom de Rubeus Hagrid vient le chercher pour l’emmener à Poudlard, une école de sorcellerie, où il est inscrit depuis sa naissance et attendu pour la prochaine rentrée. Hagrid lui révèle alors qu’il a toujours été un sorcier, tout comme l'étaient ses parents, tués en réalité par le plus puissant mage noir du monde de la sorcellerie, Voldemort (surnommé « Celui-Dont-On-Ne-Doit-Pas-Prononcer-Le-Nom »), après qu'ils ont refusé de se joindre à lui. Ce serait Henri lui-même, alors qu'il n'était encore qu'un bébé, qui aurait fait ricocher le sortilège que Voldemort lui destinait, neutralisant ses pouvoirs et le réduisant à l'état de créature quasi-insignifiante. Le fait d'avoir vécu son enfance chez son oncle et sa tante dépourvus de pouvoirs magiques lui a donc permis de grandir à l'abri de la notoriété qu'il a dans le monde des sorciers.",
-        "Henri entre donc à l’école de Poudlard, dirigée par le professeur Albus Dumbledore. Il est envoyé dans la maison Gryffondor par le « choixpeau ». Il y fait la connaissance de Ron Weasley et Hermione Granger, qui deviendront ses complices. Par ailleurs, Henri intègre rapidement l'équipe de Quidditch de sa maison, un sport collectif très populaire chez les sorciers se pratiquant sur des balais volants. Henri connaît probablement la plus heureuse année de sa vie, mais également la plus périlleuse, car Voldemort n'a pas totalement disparu et semble bien décidé à reprendre forme humaine."
-      ]
-    }
-
+        type: string
+    example:
+      isbn: c8fabf68-8374-48fe-a7ea-a00ccd07afff
+      title: Henri Potier à l'école des sorciers
+      price: 35
+      cover: 'http://henri-potier.xebia.fr/hp0.jpg'
+      synopsis:
+        - >-
+          Après la mort de ses parents (Lily et James Potier), Henri est
+          recueilli par sa tante Pétunia (la sœur de Lily) et son oncle Vernon à
+          l'âge d'un an. Ces derniers, animés depuis toujours d'une haine féroce
+          envers les parents du garçon qu'ils qualifient de gens « bizarres »,
+          voire de « monstres », traitent froidement leur neveu et demeurent
+          indifférents aux humiliations que leur fils Dudley lui fait subir.
+          Henri ignore tout de l'histoire de ses parents, si ce n'est qu'ils ont
+          été tués dans un accident de voiture
+        - >-
+          Le jour des 11 ans de Henri, un demi-géant du nom de Rubeus Hagrid
+          vient le chercher pour l’emmener à Poudlard, une école de sorcellerie,
+          où il est inscrit depuis sa naissance et attendu pour la prochaine
+          rentrée. Hagrid lui révèle alors qu’il a toujours été un sorcier, tout
+          comme l'étaient ses parents, tués en réalité par le plus puissant mage
+          noir du monde de la sorcellerie, Voldemort (surnommé «
+          Celui-Dont-On-Ne-Doit-Pas-Prononcer-Le-Nom »), après qu'ils ont refusé
+          de se joindre à lui. Ce serait Henri lui-même, alors qu'il n'était
+          encore qu'un bébé, qui aurait fait ricocher le sortilège que Voldemort
+          lui destinait, neutralisant ses pouvoirs et le réduisant à l'état de
+          créature quasi-insignifiante. Le fait d'avoir vécu son enfance chez
+          son oncle et sa tante dépourvus de pouvoirs magiques lui a donc permis
+          de grandir à l'abri de la notoriété qu'il a dans le monde des
+          sorciers.
+        - >-
+          Henri entre donc à l’école de Poudlard, dirigée par le professeur
+          Albus Dumbledore. Il est envoyé dans la maison Gryffondor par le «
+          choixpeau ». Il y fait la connaissance de Ron Weasley et Hermione
+          Granger, qui deviendront ses complices. Par ailleurs, Henri intègre
+          rapidement l'équipe de Quidditch de sa maison, un sport collectif très
+          populaire chez les sorciers se pratiquant sur des balais volants.
+          Henri connaît probablement la plus heureuse année de sa vie, mais
+          également la plus périlleuse, car Voldemort n'a pas totalement disparu
+          et semble bien décidé à reprendre forme humaine.
   Offer:
-    type: "object"
+    type: object
     properties:
       type:
-        type: "string"
+        type: string
         enum:
-        - "percentage"
-        - "minus"
-        - "slice"
+          - percentage
+          - minus
+          - slice
       value:
-        type: "integer"
-        format: "int32"
+        type: integer
+        format: int32
       sliceValue:
-        type: "integer"
-        format: "int32"
-    example: {
-      "offers": [
-        {
-          "type": "percentage",
-          "value": 4
-        },
-        {
-          "type": "minus",
-          "value": 15
-        },
-        {
-          "type": "slice",
-          "sliceValue": 100,
-          "value": 12
-        }
-      ]
-    }
+        type: integer
+        format: int32
+    example:
+      type: percentage
+      value: 4
