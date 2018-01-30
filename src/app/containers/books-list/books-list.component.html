@@ -1,11 +1,16 @@
-<p *ngIf="!(books$ | async)" class="loading">Chargement...</p>
+<ng-container *ngIf="books$ | async; let books else loading">
+  <app-books-search (onSearch)="onSearch($event)"></app-books-search>
 
-<app-books-search *ngIf="books$ | async" (onSearch)="onSearch($event)"></app-books-search>
+  <section>
+    <app-books-book
+      *ngFor="let book of books | booksFilter:search?.term:search?.fullSearch; trackBy:book?.isbn"
+      [book]="book"
+      [units]="(units$ | async)[book.isbn]"
+      (onUnitsChanged)="onUnitsChanged(book, $event)">
+    </app-books-book>
+  </section>
+</ng-container>
 
-<section *ngFor="let book of books$ | async | booksFilter:search?.term:search?.fullSearch">
-  <app-books-book
-    [book]="book"
-    [units]="(units$ | async)[book.isbn]"
-    (onUnitsChanged)="onUnitsChanged(book, $event)">
-  </app-books-book>
-</section>
+<ng-template #loading>
+  <p class="loading">Chargement...</p>
+</ng-template>
