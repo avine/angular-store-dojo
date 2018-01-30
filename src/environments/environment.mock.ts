@@ -5,6 +5,6 @@
 
 export const environment = {
   production: false,
-  booksUrl: 'http://henri-potier.xebia.fr/books',
-  stage: 'dev'
+  booksUrl: 'http://127.0.0.1:4300/books',
+  stage: 'mock'
 };

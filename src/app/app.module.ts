@@ -16,6 +16,7 @@ import { CartEffects } from './store/cart/cart.effects';
 import { BooksService } from './services/books.service';
 
 import { AppComponent } from './app.component';
+import { FlagComponent } from './components/flag/flag.component';
 import { BooksListComponent } from './containers/books-list/books-list.component';
 import { BooksCartComponent } from './containers/books-cart/books-cart.component';
 import { BooksBasketComponent } from './containers/books-basket/books-basket.component';
@@ -37,6 +38,7 @@ const routes = [
 @NgModule({
   declarations: [
     AppComponent,
+    FlagComponent,
     BooksListComponent,
     BooksCartComponent,
     BooksBasketComponent,
@@ -45,7 +47,7 @@ const routes = [
     BooksBookComponent,
     BooksCartSummaryComponent,
     BooksCartPriceComponent,
-    BooksFilterPipe
+    BooksFilterPipe,
   ],
   imports: [
     BrowserModule,
