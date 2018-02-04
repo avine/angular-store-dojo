@@ -1,4 +1,9 @@
-module.exports = [
+// tslint:disable:quotemark
+// tslint:disable:max-line-length
+
+import { BookModel } from '../../app/models/book.model';
+
+const books: BookModel[] = [
   {
     "isbn": "c8fabf68-8374-48fe-a7ea-a00ccd07afff",
     "title": "Henri Potier à l'école des sorciers",
@@ -71,3 +76,5 @@ module.exports = [
     ]
   }
 ];
+
+export default books;
