@@ -1,7 +1,5 @@
-// import 'rxjs/add/operator/map';
-
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Observable } from 'rxjs/observable';
+import { Observable } from 'rxjs/Observable';
 import { combineLatest } from 'rxjs/observable/combineLatest';
 import { map, switchMap } from 'rxjs/operators';
 import { Subscription } from 'rxjs/Subscription';
