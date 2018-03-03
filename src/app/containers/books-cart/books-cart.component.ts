@@ -8,7 +8,7 @@ import { Store } from '@ngrx/store';
 import { BookModel } from '../../models/book.model';
 import { OfferModel } from '../../models/offer.model';
 
-import { CartRules } from '../../rules/cart.rules';
+import { CartDomain } from '../../domain/cart.domain';
 
 import * as CartActions from '../../store/cart/cart.actions';
 import * as fromRoot from '../../store/reducers';
@@ -34,12 +34,12 @@ export class BooksCartComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.books$ = this.store.select(fromRoot.getCartBooks);
     this.booksCount$ = this.books$.pipe(map(books => books.length));
-    this.booksPrice$ = this.books$.pipe(map(books => new CartRules(books).getBooksPrice()));
-    this.fullPrice$ = this.books$.pipe(map(books => new CartRules(books).getFullPrice()));
+    this.booksPrice$ = this.books$.pipe(map(books => new CartDomain(books).getBooksPrice()));
+    this.fullPrice$ = this.books$.pipe(map(books => new CartDomain(books).getFullPrice()));
 
     this.offers$ = this.books$.pipe(
       switchMap(books => this.store.select(fromRoot.getCartOffers).pipe(
-        map(offers => new CartRules(books).getDiscountPrices(offers))
+        map(offers => new CartDomain(books).getDiscountPrices(offers))
       ))
     );
     this.bestOffer$ = this.offers$.pipe(map(offers => offers[0]));

@@ -10,7 +10,7 @@ import * as fromRoot from '../../store/reducers';
 import * as BooksActions from '../../store/books/books.actions';
 import * as CartActions from '../../store/cart/cart.actions';
 
-import { CartRules } from '../../rules/cart.rules';
+import { CartDomain } from '../../domain/cart.domain';
 
 @Component({
   selector: 'app-books-list',
@@ -29,7 +29,7 @@ export class BooksListComponent implements OnInit {
     this.store.dispatch(new BooksActions.GetBooks());
     this.books$ = this.store.select(fromRoot.getBooks);
     this.units$ = this.store.select(fromRoot.getCartBooks).pipe(
-      map(books => new CartRules(books).getUnitsPerIsbn())
+      map(books => new CartDomain(books).getUnitsPerIsbn())
     );
   }
 

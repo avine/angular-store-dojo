@@ -1,7 +1,7 @@
 import { BookModel } from '../models/book.model';
 import { OfferModel } from '../models/offer.model';
 
-export class CartRules {
+export class CartDomain {
   fullPrice: number;
 
   constructor(public books: BookModel[]) {
